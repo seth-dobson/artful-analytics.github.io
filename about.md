@@ -16,7 +16,7 @@ I graduated from the University of Michigan with a BS in Anthropology-Zoology in
 
 In 2007, I landed a tenure track position at Dartmouth College, where I taught undergraduate courses and continued my research on primate behavior. You can see a list my publications on Google Scholar. 
 
-After leaving academia in 2014,  and began searching for jobs as a data analyst. My first job outside of academia was at Discover Financial Services. I worked there for 4 years and learned a lot. Along the way, I taught myself R by blogging about football analytics as a hobby.
+After leaving academia in 2014,  I began searching for jobs as a data analyst. My first job outside of academia was at Discover Financial Services. I worked there for 4 years and learned a lot. Along the way, I taught myself R by blogging about football analytics as a hobby.
 
 ### Contact me
 
