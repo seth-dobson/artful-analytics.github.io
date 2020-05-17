@@ -23,6 +23,8 @@ In 2007, I landed a tenure track position at Dartmouth College, where I taught u
 
 After leaving academia in 2014,  I began searching for jobs as a data analyst. My first job outside of academia was at [Discover Financial Services](https://www.discover.com/). I worked there for 4 years and learned a lot about business intelligence and predictive analytics. Along the way, I taught myself R by blogging about Scottish [football analytics](http://fitbafancystats.blogspot.com/) as a hobby.
 
+I joined Merkle in November, 2018. I work remotely from my home in Peoria, AZ, much to the delight of my two cats.
+
 ### Contact me
 
 [seth.dobson@gmail.com](mailto:seth.dobson@gmail.com)
