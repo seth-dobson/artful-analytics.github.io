@@ -187,7 +187,7 @@ tidy_locke_n %>%
 ```
 
 ![](/images/top-words-locke-1.png)
-*Fig. 1*
+<br>*Fig. 1*
 
 By far the most frequently used word is “power”, which represents \~2%
 of all words. Other words in the top 10 reflect Locke’s focus on the
@@ -220,7 +220,7 @@ tidy_mill_n %>%
 ```
 
 ![](/images/top-words-mill-1.png)
-*Fig. 2*
+<br>*Fig. 2*
 
 “Opinion” is by far the most frequently used word. Together with
 “opinions”, these two words represent 0.87% of all words used by Mill.
@@ -283,7 +283,7 @@ tidy_both_n %>%
     ## `geom_smooth()` using formula 'y ~ x'
 
 ![](/images/word-correlations-locke-vs-mill-1.png)
-*Fig. 3*
+<br>*Fig. 3*
 
 As you can see, there is a positive correlation between the word
 frequencies overall, as indicated by the linear regression line having a
