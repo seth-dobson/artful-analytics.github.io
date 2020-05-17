@@ -28,3 +28,6 @@ I joined Merkle in November, 2018. I work remotely from my home in Peoria, AZ, m
 ### Contact me
 
 [seth.dobson@gmail.com](mailto:seth.dobson@gmail.com)
+
+![](/images/kiefer-with-r-books.jpg)
+<br>*Fig. 2 Kiefer the R cat*
