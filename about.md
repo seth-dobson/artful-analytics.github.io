@@ -15,10 +15,11 @@ My career path to marketing analytics has been unconventional to say the least.
 I graduated from the University of Michigan with a BS in Anthropology-Zoology in 1999, and later earned a PhD in Biological Anthropology from Washington University in St. Louis in 2006. My dissertation research was on monkey facial expressions.
 
 
-![Video recording Gelada Baboon facial expressions in the Simien Mountains of Ethiopia](/images/me-in-ethiopia-with-geladas.jpg)
+![](/images/me-in-ethiopia-with-geladas.jpg)
+<br>*Fig. 1 Video recording Gelada Baboons in Ethiopia*
 
 
-In 2007, I landed a tenure track position at Dartmouth College, where I taught undergraduate courses and continued my research on primate behavior. You can see a list my publications on Google Scholar. 
+In 2007, I landed a tenure track position at Dartmouth College, where I taught undergraduate courses and continued my research on primate behavior (Fig. 1). You can see a list my publications on [Google Scholar](https://scholar.google.com/citations?user=ndsicGMAAAAJ&hl=en). 
 
 After leaving academia in 2014,  I began searching for jobs as a data analyst. My first job outside of academia was at Discover Financial Services. I worked there for 4 years and learned a lot. Along the way, I taught myself R by blogging about football analytics as a hobby.
 
