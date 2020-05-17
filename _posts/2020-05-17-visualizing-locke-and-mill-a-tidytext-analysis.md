@@ -186,7 +186,7 @@ tidy_locke_n %>%
   scale_fill_continuous("% of Total")
 ```
 
-![](unnamed-chunk-6-1.png)
+![](/images/unnamed-chunk-6-1.png)
 
 By far the most frequently used word is “power”, which represents \~2%
 of all words. Other words in the top 10 reflect Locke’s focus on the
@@ -218,8 +218,7 @@ tidy_mill_n %>%
   scale_fill_continuous("% of Total")
 ```
 
-![Top word frequencies, On
-Liberty](2020-05-17-visualizing-locke-and-mill-a-tidytext-analysis_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](/images/unnamed-chunk-7-1.png)
 
 “Opinion” is by far the most frequently used word. Together with
 “opinions”, these two words represent 0.87% of all words used by Mill.
@@ -281,8 +280,7 @@ tidy_both_n %>%
 
     ## `geom_smooth()` using formula 'y ~ x'
 
-![Word frequencies, On Liberty vs. Second Treatise of
-Government](2020-05-17-visualizing-locke-and-mill-a-tidytext-analysis_files/figure-markdown_github/unnamed-chunk-9-1.png)
+![](/images/unnamed-chunk-9-1.png)
 
 As you can see, there is a positive correlation between the word
 frequencies overall, as indicated by the linear regression line having a
