@@ -186,7 +186,7 @@ tidy_locke_n %>%
   scale_fill_continuous("% of Total")
 ```
 
-![](2020-05-17-visualizing-locke-and-mill--a-tidy-text-analysis_files/figure-markdown_github/top-words-locke-1.png)
+![](/images/top-words-locke-1.png)
 *Fig. 1*
 
 By far the most frequently used word is “power”, which represents \~2%
@@ -219,7 +219,7 @@ tidy_mill_n %>%
   scale_fill_continuous("% of Total")
 ```
 
-![](2020-05-17-visualizing-locke-and-mill--a-tidy-text-analysis_files/figure-markdown_github/top-words-mill-1.png)
+![](/images/top-words-mill-1.png)
 *Fig. 2*
 
 “Opinion” is by far the most frequently used word. Together with
@@ -280,7 +280,7 @@ tidy_both_n %>%
   theme(plot.caption = element_text(face = "italic"))
 ```
 
-![](2020-05-17-visualizing-locke-and-mill--a-tidy-text-analysis_files/figure-markdown_github/word-correlations-locke-vs-mill-1.png)
+![](/images/word-correlations-locke-vs-mill-1.png)
 *Fig. 3*
 
 As you can see, there is a positive correlation between the word
