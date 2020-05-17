@@ -12,7 +12,11 @@ I am currently an Analytics Manager at Merkle, a leading data-driven marketing c
 
 My career path to marketing analytics has been unconventional to say the least.
 
-I graduated from the University of Michigan with a BS in Anthropology-Zoology in 1999, and later earned a PhD in Biological Anthropology from Washington University in St. Louis in 2006. My dissertation research was on monkey facial expressions. 
+I graduated from the University of Michigan with a BS in Anthropology-Zoology in 1999, and later earned a PhD in Biological Anthropology from Washington University in St. Louis in 2006. My dissertation research was on monkey facial expressions.
+
+
+![Video recording Gelada Baboon facial expressions in the Simien Mountains of Ethiopia](/images/me-in-ethiopia-with-geladas.jpg)
+
 
 In 2007, I landed a tenure track position at Dartmouth College, where I taught undergraduate courses and continued my research on primate behavior. You can see a list my publications on Google Scholar. 
 
