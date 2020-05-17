@@ -1,3 +1,5 @@
+A {tidytext} analysis of John Locke and John Stuart Mill
+
 Introduction
 ------------
 
@@ -60,7 +62,7 @@ used the
 package developed by David Robinson to download the works.
 
 ``` r
-# Load packages and set plot theme
+# Load packages
 library(gutenbergr)
 library(tidyverse)
 library(tidytext)
@@ -221,19 +223,19 @@ tidy_mill_n %>%
 *Fig. 2*
 
 “Opinion” is by far the most frequently used word. Together with
-“opinions”, these two words represent 0.87% of all words used by Mill.
+“opinions”, these two words represent 1.46% of all words used by Mill.
 
 ``` r
 # Calculate the summed percentage of "opinion" and "opinions"
 tidy_mill_n %>% 
-  filter(word %in% c("opinion", "opinoins")) %>% 
+  filter(word %in% c("opinion", "opinions")) %>% 
   summarise(sum_pct = sum(pct)*100)
 ```
 
     ## # A tibble: 1 x 1
     ##   sum_pct
     ##     <dbl>
-    ## 1   0.871
+    ## 1    1.46
 
 It is interesting to note that there is almost no overlap between the
 top 10 most frequently used words by Locke and Mill. Only the word
@@ -277,8 +279,6 @@ tidy_both_n %>%
        caption = "seth-dobson-github.io") +
   theme(plot.caption = element_text(face = "italic"))
 ```
-
-    ## `geom_smooth()` using formula 'y ~ x'
 
 ![](2020-05-17-visualizing-locke-and-mill--a-tidy-text-analysis_files/figure-markdown_github/word-correlations-locke-vs-mill-1.png)
 *Fig. 3*
