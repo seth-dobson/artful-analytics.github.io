@@ -1,0 +1,127 @@
+Introduction
+------------
+
+In this post, I will perform a text mining analysis of two important
+philosophical works on the topic of individual liberty: John Locke’s
+[*Second Treatise of
+Governement*](https://en.wikipedia.org/wiki/Two_Treatises_of_Government)
+and John Stuart Mill’s [*On
+Liberty*](https://en.wikipedia.org/wiki/On_Liberty).
+
+I will rely mainly on the
+[tidytext](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html)
+package, as described in the book [*Text Mining with R: A Tidy
+Approach*](https://www.tidytextmining.com/) written by [Julia
+Silge](https://juliasilge.com/) and [David
+Robinson](http://varianceexplained.org/about/). My focus will be on
+comparing word frequencies to understand the degree to which word usage
+correlates between Locke and Mill.
+
+A brief excursion into political philosophy
+-------------------------------------------
+
+*Second Treatise of Government* was published in 1690, while *On
+Liberty* was published 1859. Both of these highly influential works are
+ostensibly about individual freedom. However, they are nonetheless
+different in important ways.
+
+First, while *Second Treatise* is predominantly about civil liberty, or
+freedom from tyrannical forms of government that infringe upon
+individual rights to life, liberty, and property, *On Liberty* mainly
+focuses on personal liberty, i.e., freedom of speech/thought and social
+non-conformity.
+
+Second, the two authors differed fundamentally in their view of [natural
+rights](https://en.wikipedia.org/wiki/Natural_and_legal_rights). The
+background research for this section is based on Modules 2 and 8 from
+the Cato Institute’s [Home Study
+Course](https://www.cato.org/cato-university/home-study-course)"). Locke
+argued that natural law gives all people universal and unalienable
+rights of self-ownership and self-determination, and that the purpose of
+government is to protect these rights. Mill on the other hand, being a
+disciple of [Jeremy
+Bentham](https://en.wikipedia.org/wiki/Jeremy_Bentham), did not believe
+in the logical existence of natural rights, and therefore made his
+defense of individual liberty from the standpoint of
+[utilitarianism](https://en.wikipedia.org/wiki/Utilitarianism), or the
+greatest happiness for the greatest number.
+
+Based on these differences, you might expect word usage to differ
+somewhat between *Second Treatise* and *On Liberty*. Let’s use R to take
+a look!
+
+Tidytext in action
+------------------
+
+[Project Gutenberg](https://www.gutenberg.org/) has both *Second
+Treatise of Government* and *On Liberty* in its free digital archives. I
+used the
+[gutenbergr](https://cran.r-project.org/web/packages/gutenbergr/vignettes/intro.html)
+package developed by David Robinson to download the works.
+
+``` r
+# Load packages and set plot theme
+library(gutenbergr)
+library(tidyverse)
+library(tidytext)
+# library(ggthemr)
+# ggthemr("dust")
+```
+
+First, I used the metadata file from the gutenbergr package to find the
+ID numbers for *Second Treatise* and *On Liberty*. Once I had these, I
+was able to download each work using the `gutenberg_download()`
+function.
+
+Let’s start with Locke.
+
+``` r
+# Download Second Treatise of Governement
+locke <- gutenberg_download(gutenberg_id = 7370)
+
+# Show a selection of text
+locke %>% 
+  select(text) %>% 
+  slice(50:56)
+```
+
+    ## # A tibble: 7 x 1
+    ##   text                                                                    
+    ##   <chr>                                                                   
+    ## 1 Reader, thou hast here the beginning and end of a discourse concerning  
+    ## 2 government; what fate has otherwise disposed of the papers that should  
+    ## 3 have filled up the middle, and were more than all the rest, it is not   
+    ## 4 worth while to tell thee. These, which remain, I hope are sufficient to 
+    ## 5 establish the throne of our great restorer, our present King William; to
+    ## 6 make good his title, in the consent of the people, which being the only 
+    ## 7 one of all lawful governments, he has more fully and clearly, than any
+
+After we tidy it up with the tidytext package, it looks like this.
+
+``` r
+# Tokenize text and remove stop words
+tidy_locke <- locke %>% 
+  unnest_tokens(output = word, input = text, token = "words") %>%
+  anti_join(stop_words) %>% 
+  mutate(word = str_extract(word, "[a-z']+"))
+
+# Show a selection of tokens (words)
+tidy_locke %>% 
+  select(word) %>% 
+  slice(144:170)
+```
+
+    ## # A tibble: 27 x 1
+    ##    word      
+    ##    <chr>     
+    ##  1 reader    
+    ##  2 thou      
+    ##  3 hast      
+    ##  4 beginning 
+    ##  5 discourse 
+    ##  6 government
+    ##  7 fate      
+    ##  8 disposed  
+    ##  9 papers    
+    ## 10 filled    
+    ## # … with 17 more rows
