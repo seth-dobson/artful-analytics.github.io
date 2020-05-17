@@ -186,8 +186,7 @@ tidy_locke_n %>%
   scale_fill_continuous("% of Total")
 ```
 
-![Top word frequencies, Second Treatise of
-Governemnt](2020-05-17-visualizing-locke-and-mill-a-tidytext-analysis_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](unnamed-chunk-6-1.png)
 
 By far the most frequently used word is “power”, which represents \~2%
 of all words. Other words in the top 10 reflect Locke’s focus on the
