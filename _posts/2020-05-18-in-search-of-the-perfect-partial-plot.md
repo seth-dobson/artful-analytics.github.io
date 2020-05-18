@@ -173,7 +173,7 @@ imp_df %>%
   theme(plot.caption = element_text(face = "italic"))
 ```
 
-![](2020-05-18-in-search-of-the-perfect-partial-plot_files/figure-markdown_github/most-important-variables-1.png)
+![](/images/most-important-variables-1.png)
 <br>*Fig. 1*
 
 As you can see in Figure 1, V11 and V12 stand out as being the most
@@ -213,8 +213,8 @@ dependence patterns (Figure 2).
 plot_pd(pd_df)
 ```
 
-![](2020-05-18-in-search-of-the-perfect-partial-plot_files/figure-markdown_github/edarf-partial-plot-1.png)
-&lt;br?*Fig. 2*
+![](/images/edarf-partial-plot-1.png)
+<br>*Fig. 2*
 
 So I have a few issues with this visualization. But first I would like
 to stress that these are matters of personal preference. I am not
@@ -331,7 +331,7 @@ Let’s run it!
 perfectPartialPlot(df = pd_df, x = nm, y = "R")
 ```
 
-![](2020-05-18-in-search-of-the-perfect-partial-plot_files/figure-markdown_github/perfect-partial-plot-1.png)
+![](/images/perfect-partial-plot-1.png)
 <br>*Fig. 3*
 
 Out comes the perfect PD plot, or at least one that I like better than
