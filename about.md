@@ -28,4 +28,4 @@ I joined Merkle in November, 2018. My job involves using R everyday, which I lov
 <br>*Fig. 2 Kiefer the R cat*
 
 
-*Questions or comments? Feel free to reach out to me on [Twitter](https://twitter.com/_sethdobson)*
+*Questions or comments? Feel free to reach out to me on [Twitter](https://twitter.com/_sethdobson).*
