@@ -66,7 +66,7 @@ or a roughly cylindrical rock. The response variable has two classes: M
 for metal cylinder or R for rock.
 
 ``` r
-# Load packages and set theme
+# Load packages and get data
 library(tidyverse)
 library(mlbench)
 library(randomForest)
