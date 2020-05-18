@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: About me
 permalink: /about/
 ---
 
@@ -8,7 +8,7 @@ My name is Seth Dobson, and this is my personal website, where I blog mostly abo
 
 I am currently an Analytics Manager at [Merkle](https://www.merkleinc.com/), a leading data-driven marketing agency owned by the [Dentsu Aegis Network](https://www.dentsuaegisnetwork.com/). I work with clients to help transform data into actionable insights. All the views expressed here are my own.
 
-### My Journey
+### My journey
 
 My career path to marketing analytics has been unconventional to say the least.
 
@@ -25,7 +25,7 @@ After leaving academia in 2014,  I began searching for jobs as a data analyst. M
 
 I joined Merkle in November, 2018. I work remotely from my home in Peoria, AZ, much to the delight of my two cats (Fig. 2).
 
-### Contact Me
+### Contact me
 
 [seth.dobson@gmail.com](mailto:seth.dobson@gmail.com)
 
