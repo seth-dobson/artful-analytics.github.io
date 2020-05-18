@@ -1,3 +1,8 @@
+---
+layout: post
+title: Visualizing Locke & Mill
+---
+
 A {tidytext} analysis of John Locke and John Stuart Mill
 
 Introduction
