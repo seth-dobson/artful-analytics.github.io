@@ -8,8 +8,6 @@ My name is Seth Dobson, and this is my personal website, where I blog mostly abo
 
 I am currently an Analytics Manager at [Merkle](https://www.merkleinc.com/), a leading data-driven marketing agency owned by the [Dentsu Aegis Network](https://www.dentsuaegisnetwork.com/). I work with clients to help transform data into actionable insights. All the views expressed here are my own.
 
-### My journey
-
 My career path to marketing analytics has been unconventional to say the least.
 
 I graduated from the [University of Michigan](https://umich.edu/) with a BS in Anthropology-Zoology in 1999, and later earned a PhD in [Biological Anthropology](https://physanth.org/career/career-biological-anthropology/) from [Washington University](https://wustl.edu/) in St. Louis in 2006. My dissertation research was on monkey facial expressions.
