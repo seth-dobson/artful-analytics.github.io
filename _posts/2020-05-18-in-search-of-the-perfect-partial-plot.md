@@ -3,7 +3,7 @@ layout: post
 title: In Search of the Perfect Partial Plot
 ---
 
-How I created a customized partial plot function with the help of
+How I created a custom partial plot function with the help of
 {edarf}
 
 Introduction
