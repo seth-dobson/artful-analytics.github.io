@@ -313,4 +313,6 @@ Liberty* only scratches the surface of what is possible with tidytext.
 In future posts, I hope to go deeper with tidytext. But for now, thanks
 for reading!
 
-*Questions or comments? Feel free to reach out to me on [Twitter](https://twitter.com/_sethdobson).*
+## Questions or comments?
+
+Feel free to reach out to me on [Twitter](https://twitter.com/_sethdobson).
