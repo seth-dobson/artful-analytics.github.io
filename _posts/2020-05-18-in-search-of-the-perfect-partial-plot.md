@@ -395,4 +395,7 @@ perfectPartialPlot <- function(df, x, y){
   
 }
 ```
-*Questions or comments? Feel free to reach out to me on [Twitter](https://twitter.com/_sethdobson).*
+
+## Questions or comments?
+
+Feel free to reach out to me on [Twitter](https://twitter.com/_sethdobson).
