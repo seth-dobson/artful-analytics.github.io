@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Visualizing Locke & Mill
+title: Visualizing Locke and Mill
 ---
 
 A {tidytext} analysis of John Locke and John Stuart Mill
