@@ -39,10 +39,10 @@ focuses on personal liberty, i.e., freedom of speech/thought and social
 non-conformity.
 
 Second, the two authors differed fundamentally in their view of [natural
-rights](https://en.wikipedia.org/wiki/Natural_and_legal_rights). The
+rights](https://en.wikipedia.org/wiki/Natural_and_legal_rights) (the
 background research for this section is based on Modules 2 and 8 from
 the Cato Institute’s [Home Study
-Course](https://www.cato.org/cato-university/home-study-course)"). Locke
+Course](https://www.cato.org/cato-university/home-study-course)). Locke
 argued that natural law gives all people universal and unalienable
 rights of self-ownership and self-determination, and that the purpose of
 government is to protect these rights. Mill on the other hand, being a
