@@ -27,3 +27,4 @@ I joined Merkle in November, 2018. My job involves using R everyday, which I lov
 ![](/images/kiefer-with-r-books.jpg)
 <br>*Fig. 2 Kiefer the R cat*
 
+**For more R content, please visit [R-Bloggers](https://www.r-bloggers.com/) and [RWeekly.org](https://rweekly.org/).**
