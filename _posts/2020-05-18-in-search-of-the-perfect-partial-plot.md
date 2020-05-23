@@ -22,7 +22,7 @@ I’ve never been completely satisfied with any of them, until now.
 
 In this post, I show how I created a customized PD plot function with
 the help of [ggplot2](https://ggplot2.tidyverse.org/) and the
-[edarf](https://cran.r-project.org/web/packages/edarf/vignettes/edarf.html)
+[edarf](https://github.com/zmjones/edarf)
 package, thus ending my long search for the perfect Random Forests PD
 plot in R.
 
