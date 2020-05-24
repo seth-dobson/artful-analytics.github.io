@@ -1,0 +1,28 @@
+---
+title: "No Blogdown, No Problem"
+author: "Seth Dobson"
+date: "5/23/2020"
+output:
+  md_document:
+    variant: markdown_github
+---
+
+R blogging with RStudio Cloud, GitHub Pages, and Jekyll
+
+## Introduction
+
+Let's face it. Can you really call yourself a member of the #rstats community if you don't have your own blog where you share cool stuff about R? Sure. But it is also true that many R users and developers blog regularly about R, and many of them use blogdown do it.
+
+Blogdown is..
+
+Here's the problem. If you are an avid RStudio Cloud user like I am, blogdown is off the table. While setting up a blogdown site is relatively painless, it does require that you download Hugo and build your site locally. Hence, not an option if you want to use RStudio Cloud to create and maintain your blog.
+
+Fortunately, RStudio Cloud has excellent integration with GitHub, and GitHub Pages lets you create a blog directly from a repository using Jekyll.
+
+## Setting up the site
+
+## Creating posts in RStudio Cloud
+
+## Pushing posts to GitHub
+
+## That's it!
