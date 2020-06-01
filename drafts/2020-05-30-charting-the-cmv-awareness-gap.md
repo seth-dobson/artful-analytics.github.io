@@ -58,7 +58,7 @@ this purpose (Fig. 1). It nicely shows levels of awareness vs incidence
 of various congenital conditions in the US, based on data from [Doutre
 et al. (2016)](https://digitalcommons.usu.edu/jehdi/vol1/iss2/6/).
 
-![](/images/awareness-and-incidence.jpg) <br> *Fig. 1*
+![](/images/awareness-and-incidence.jpg) <br> *Fig. 1 {\#anchor}*
 
 Recently, I was asked by the Foundation to revise this graphic to
 enhance its effectiveness (not coincidentally, [my
@@ -116,8 +116,8 @@ awareness and incidence visually so that people viewing the chart will
 say “Wow! That’s some big gap.” And I think I can achieve this without
 being manipulative or misleading, becuase the gap really is quite big.
 
-Without further ado
--------------------
+Without further ado…
+--------------------
 
 Here’s the R code for the chart.
 
@@ -177,11 +177,10 @@ p <-
   ) +
   theme_bw() +
   theme(
-    plot.title = element_markdown(face = "bold", hjust = .5),
+    plot.title = element_text(face = "bold", hjust = .5),
     plot.caption = element_textbox_simple(size = 6, margin = margin(10, 0, 0, 0)),
     axis.text = element_text(color = "black"),
-    axis.title = element_text(size = 10),
-    axis.title.x = element_markdown()
+    axis.title = element_text(size = 10)
   ) +
   background_grid(major = "none") +
   annotate(
@@ -251,6 +250,11 @@ A few things to note about the code above:
     Chrome extension to get hex color values from the National CMV logo.
     That way I was able to match the colors in the logo to the chart
     elements without a lot of trial and error or imperfect guesswork.
+-   Also note that I am using the amazing
+    [ggtext](https://wilkelab.org/ggtext/) package to render the
+    `plot.caption` theme element in markdown, so I can easily italicize
+    selected words with *asterisks*. The `element_textbox_simple()` from
+    {ggtext} also does word wrapping automatically.
 
 And here’s how the chart looks (Fig. 2). You can download a high
 resolution version [here](https://github.com/seth-dobson/cmv-charts).
@@ -262,10 +266,11 @@ Conclusion
 ----------
 
 Hopefully you will agree that my combination bar and dot chart is an
-improvement on the original graph (Fig. 1) in that it highlights the CMV
-awareness gap more effectively for a general audience. I also trust that
-Hadley would agree that this is an acceptable use of a secondary axis.
-Altough, he might not. So nobody tell him, OK?
+improvement on the original graph ([Fig. 1](#anchor)) in that it
+highlights the CMV awareness gap more effectively for a general
+audience. I also trust that Hadley would agree that this is an
+acceptable use of a secondary axis. Altough, he might not. So nobody
+tell him, OK?
 
 To learn more about congenital CMV visit
 [nationalcmv.org](https://www.nationalcmv.org/).
@@ -274,3 +279,7 @@ Questions or comments?
 ----------------------
 
 Feel free to reach out to me at any of the social links below.
+
+**For more R content, please visit
+[R-bloggers](https://www.r-bloggers.com/) and
+[RWeekly.org](https://rweekly.org/).**
