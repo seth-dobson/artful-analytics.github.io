@@ -29,7 +29,7 @@ Congenital CMV (cCMV) is the number one viral cause of birth defects in children
 
 Despite how common and potentially damaging CMV is, research shows that only 9% of women have heard of the condition.
 
-## Awareness = prevention
+## Awareness = prevention {#anchor}
 
 [Our son Gideon](https://www.npr.org/sections/health-shots/2017/03/27/520966988/for-gideon-infection-with-a-common-virus-caused-rare-birth-defects) was born with congenital CMV in 2013. Like most parents, we had never heard of cCMV until our son was diagnosed. 
 
@@ -40,7 +40,7 @@ One of the main tactics used in CMV awareness raising efforts is to highlight th
 In the past, the National CMV Foundation has used the graphic below for this purpose (Fig. 1). It nicely shows levels of awareness vs incidence of various congenital conditions in the US, based on data from [Doutre et al. (2016)](https://digitalcommons.usu.edu/jehdi/vol1/iss2/6/).
 
 ![](/images/awareness-and-incidence.jpg)
-<br> *Fig. 1* {#anchor}
+<br> *Fig. 1*
 
 Recently, I was asked by the Foundation to revise this graphic to enhance its effectiveness (not coincidentally, [my wife](https://twitter.com/ProfMuldoon) is the Chair of the Scientific Advisory Committee).
 
