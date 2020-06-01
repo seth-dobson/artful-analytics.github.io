@@ -90,7 +90,7 @@ df <- tribble(
 
 # Get National CMV logo
 
-logo<-image_read("https://github.com/seth-dobson/cmv-charts/blob/master/CMV-Full-Tagline-Logo_Transparent.png?raw=true")
+logo <- image_read("https://github.com/seth-dobson/cmv-charts/blob/master/CMV-Full-Tagline-Logo_Transparent.png?raw=true")
 
 # Create chart
 
