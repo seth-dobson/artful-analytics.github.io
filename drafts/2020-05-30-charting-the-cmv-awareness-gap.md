@@ -1,4 +1,4 @@
-Using a secondary axis for a good cause
+Sometimes a secondary axis is OK
 
 Introduction
 ------------
@@ -32,7 +32,7 @@ problems including:
 with congenital CMV are wide-ranging and unpredictable.
 
 Despite how common and potentially damaging CMV is, research shows that
-only 9% of women have heard of the condition.
+**only 9% of women have heard of the condition.**
 
 Awareness = prevention
 ----------------------
@@ -145,7 +145,7 @@ df <- tribble(
 
 # Get National CMV logo
 
-logo<-image_read("https://github.com/seth-dobson/cmv-charts/blob/master/CMV-Full-Tagline-Logo_Transparent.png?raw=true")
+logo <- image_read("https://github.com/seth-dobson/cmv-charts/blob/master/CMV-Full-Tagline-Logo_Transparent.png?raw=true")
 
 # Create chart
 

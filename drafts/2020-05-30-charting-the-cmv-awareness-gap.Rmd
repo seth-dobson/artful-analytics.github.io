@@ -7,7 +7,7 @@ output:
     variant: markdown_github
 ---
 
-Using a secondary axis for a good cause
+Sometimes a secondary axis is OK
 
 ## Introduction
 
@@ -27,7 +27,7 @@ Congenital CMV (cCMV) is the number one viral cause of birth defects in children
 
 [Outcomes](https://www.nationalcmv.org/overview/outcomes) associated with congenital CMV are wide-ranging and unpredictable.
 
-Despite how common and potentially damaging CMV is, research shows that only 9% of women have heard of the condition.
+Despite how common and potentially damaging CMV is, research shows that **only 9% of women have heard of the condition.**
 
 ## Awareness = prevention {#anchor}
 
