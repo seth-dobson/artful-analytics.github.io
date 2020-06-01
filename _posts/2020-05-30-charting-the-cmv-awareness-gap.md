@@ -258,7 +258,7 @@ A few things to note about the code above:
 -   Also note that I am using the amazing
     [ggtext](https://wilkelab.org/ggtext/) package to render the
     `plot.caption` theme element in markdown, so I can easily italicize
-    selected words with *asterisks*. The `element_textbox_simple()` from
+    selected words with asterisks. The `element_textbox_simple()` from
     {ggtext} also does word wrapping automatically.
 
 And here’s how the chart looks (Fig. 2). You can download a high
