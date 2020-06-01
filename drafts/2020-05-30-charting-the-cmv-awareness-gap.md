@@ -32,13 +32,14 @@ problems including:
 with congenital CMV are wide-ranging and unpredictable.
 
 Despite how common and potentially damaging CMV is, research shows that
-**only 9% of women have heard of the condition**.
+only 9% of women have heard of the condition.
 
 Awareness = prevention
 ----------------------
 
 [Our son
-Gideon](https://www.npr.org/sections/health-shots/2017/03/27/520966988/for-gideon-infection-with-a-common-virus-caused-rare-birth-defects) was born with congenital CMV in 2013. Like most parents, we had never
+Gideon](https://www.npr.org/sections/health-shots/2017/03/27/520966988/for-gideon-infection-with-a-common-virus-caused-rare-birth-defects)
+was born with congenital CMV in 2013. Like most parents, we had never
 heard of cCMV until our son was diagnosed.
 
 Because cCMV is a viral infection, it is potentially preventable during
@@ -122,45 +123,10 @@ Here’s the R code for the chart.
 
 ``` r
 library(tidyverse)
-```
-
-    ## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
-
-    ## ✓ ggplot2 3.3.1     ✓ purrr   0.3.4
-    ## ✓ tibble  3.0.1     ✓ dplyr   1.0.0
-    ## ✓ tidyr   1.1.0     ✓ stringr 1.4.0
-    ## ✓ readr   1.3.1     ✓ forcats 0.5.0
-
-    ## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-    ## x dplyr::filter() masks stats::filter()
-    ## x dplyr::lag()    masks stats::lag()
-
-``` r
 library(cowplot)
-```
-
-    ## 
-    ## ********************************************************
-
-    ## Note: As of version 1.0.0, cowplot does not change the
-
-    ##   default ggplot2 theme anymore. To recover the previous
-
-    ##   behavior, execute:
-    ##   theme_set(theme_cowplot())
-
-    ## ********************************************************
-
-``` r
 library(ggtext)
 library(magick)
-```
 
-    ## Linking to ImageMagick 6.9.7.4
-    ## Enabled features: fontconfig, freetype, fftw, lcms, pango, x11
-    ## Disabled features: cairo, ghostscript, rsvg, webp
-
-``` r
 # Get data from Doutre et al.
 
 df <- tribble(
@@ -289,8 +255,8 @@ A few things to note about the code above:
 And here’s how the chart looks (Fig. 2). You can download a high
 resolution version [here](https://github.com/seth-dobson/cmv-charts).
 
-![](2020-05-30-charting-the-cmv-awareness-gap_files/figure-markdown_github/unnamed-chunk-2-1.png)
-<br> *Fig. 2*
+![](/images/cmv_awareness-vs-incidence_with-logo-and-arrows.png) <br>
+*Fig. 2*
 
 Conclusion
 ----------
@@ -299,7 +265,7 @@ Hopefully you will agree that my combination bar and dot chart is an
 improvement on the original graph (Fig. 1) in that it highlights the CMV
 awareness gap more effectively for a general audience. I also trust that
 Hadley would agree that this is an acceptable use of a secondary axis.
-Although, he might not. So nobody tell him, OK?
+Altough, he might not. So nobody tell him, OK?
 
 To learn more about congenital CMV visit
 [nationalcmv.org](https://www.nationalcmv.org/).
