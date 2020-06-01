@@ -32,14 +32,13 @@ problems including:
 with congenital CMV are wide-ranging and unpredictable.
 
 Despite how common and potentially damaging CMV is, research shows that
-only 9% of women have heard of the condition.
+**only 9% of women have heard of the condition**.
 
 Awareness = prevention
 ----------------------
 
-\[Our son
-Gideon\]((<a href="https://www.npr.org/sections/health-shots/2017/03/27/520966988/for-gideon-infection-with-a-common-virus-caused-rare-birth-defects" class="uri">https://www.npr.org/sections/health-shots/2017/03/27/520966988/for-gideon-infection-with-a-common-virus-caused-rare-birth-defects</a>)
-was born with congenital CMV in 2013. Like most parents, we had never
+[Our son
+Gideon](https://www.npr.org/sections/health-shots/2017/03/27/520966988/for-gideon-infection-with-a-common-virus-caused-rare-birth-defects) was born with congenital CMV in 2013. Like most parents, we had never
 heard of cCMV until our son was diagnosed.
 
 Because cCMV is a viral infection, it is potentially preventable during
