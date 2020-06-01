@@ -1,0 +1,311 @@
+Using a secondary axis for a good cause
+
+Introduction
+------------
+
+Speaking of viruses, did you know that June is [National Cytomegalovirus
+(CMV) Awareness Month](https://www.cdc.gov/cmv/awareness-month.html)?
+Probably not, since most people have never heard of CMV (hence the need
+for a national awareness month).
+
+CMV is a common virus that infects 50-80% of people by the time they are
+40 years old. In most cases, it’s not a big deal. But if a pregnant
+woman becomes infected, she can pass the virus to the unborn child,
+whichs results in a congenital infection about 33% of the time.
+
+Congenital CMV (cCMV) is the number one viral cause of birth defects in
+children. According to [National CMV
+Foundation](https://www.nationalcmv.org/default.aspx), 1 in 200 children
+are born with CMV every year. That’s roughly 6,000 children. About 1 in
+5 children born with CMV infection will have moderate to severe health
+problems including:
+
+-   Hearing loss
+-   Vision loss
+-   Feeding issues
+-   Mental disability
+-   Microcephaly (small head or brain)
+-   Cerebral Palsy
+-   Seizures
+
+[Outcomes](https://www.nationalcmv.org/overview/outcomes) associated
+with congenital CMV are wide-ranging and unpredictable.
+
+Despite how common and potentially damaging CMV is, research shows that
+only 9% of women have heard of the condition.
+
+Awareness = prevention
+----------------------
+
+\[Our son
+Gideon\]((<a href="https://www.npr.org/sections/health-shots/2017/03/27/520966988/for-gideon-infection-with-a-common-virus-caused-rare-birth-defects" class="uri">https://www.npr.org/sections/health-shots/2017/03/27/520966988/for-gideon-infection-with-a-common-virus-caused-rare-birth-defects</a>)
+was born with congenital CMV in 2013. Like most parents, we had never
+heard of cCMV until our son was diagnosed.
+
+Because cCMV is a viral infection, it is potentially preventable during
+pregnancy if you know to take certain [basic
+precautions](https://www.nationalcmv.org/overview/prevention-tips).
+However, **knowing to take precations requires having heard of the
+condition in the first place**, which brings us back to the need for a
+National CMV Awareness Month.
+
+One of the main tactics used in CMV awareness raising efforts is to
+highlight the “awareness gap” between how few women have heard of CMV
+and how many children are born with the condition each year.
+
+In the past, the National CMV Foundation has used the graphic below for
+this purpose (Fig. 1). It nicely shows levels of awareness vs incidence
+of various congenital conditions in the US, based on data from [Doutre
+et al. (2016)](https://digitalcommons.usu.edu/jehdi/vol1/iss2/6/).
+
+![](/images/awareness-and-incidence.jpg) <br> *Fig. 1*
+
+Recently, I was asked by the Foundation to revise this graphic to
+enhance its effectiveness (not coincidentally, [my
+wife](https://twitter.com/ProfMuldoon) is the Chair of the Scientific
+Advisory Committee).
+
+In this post, I describe my approach using
+[ggplot2](https://ggplot2-book.org/introduction.html), as well as
+[cowplot](https://wilkelab.org/cowplot/articles/introduction.html) and
+related pacakges in [R](https://www.r-project.org/about.html).
+
+Mind the gap
+------------
+
+Technically speaking, Fig. 1 is what you would call a bi-directional,
+mirrored, diverging, or back-to-back bar chart. It is reminiscent of
+[pyramid style](https://en.wikipedia.org/wiki/Population_pyramid) bar
+charts often used to visualize population age distributions.
+
+I suspect that when people see Fig. 1 they have a perceptual tendency to
+sum the bars toghether rather than take the difference between each bar.
+The former is typically how a bi-directional bar chart would be
+interpreted. But since the purpose of the visualization is to highlight
+the CMV awareness gap, it might be better to actually plot the gap
+(linear distance) between awareness and incidence for cCMV in comparison
+to other conditions.
+
+So my proposed enhancement is to layer the incidence data as a series of
+dots on top of an ordered bar chart representing increasing awareness on
+the x-axis, and use a secondary x-axis for incidence. Layering in this
+way will create a visually salient gap between awareness and incidence
+for cCMV at the top of the chart, which I can further highlight with
+some text annotations.
+
+Secondary axis (of evil?)
+-------------------------
+
+Early versions of {ggplot2} did not include the ability to add a
+secondary axis because [Hadley
+Wickham](https://twitter.com/hadleywickham) believed (and probably still
+believes) that using a separate, secondary axis is a [fundamentally
+flawed](https://stackoverflow.com/questions/3099219/ggplot-with-2-y-axes-on-each-side-and-different-scales/3101876#3101876)
+approach.
+
+However, more recent versions of the package have included this
+functionality with the `sec_axis()` function described
+[here](https://ggplot2.tidyverse.org/reference/sec_axis.html). I think
+we can assume from the addition of this functionality that Hadley isn’t
+completely averse to the use of a secondary axis in some situations when
+used with caution.
+
+Again, my rationale for using a secondary x-axis in this case is to
+achieve a specific perceptual effect, to higlight the gap between cCMV
+awareness and incidence visually so that people viewing the chart will
+say “Wow! That’s some big gap.” And I think I can achieve this without
+being manipulative or misleading, becuase the gap really is quite big.
+
+Without further ado
+-------------------
+
+Here’s the R code for the chart.
+
+``` r
+library(tidyverse)
+```
+
+    ## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──
+
+    ## ✓ ggplot2 3.3.1     ✓ purrr   0.3.4
+    ## ✓ tibble  3.0.1     ✓ dplyr   1.0.0
+    ## ✓ tidyr   1.1.0     ✓ stringr 1.4.0
+    ## ✓ readr   1.3.1     ✓ forcats 0.5.0
+
+    ## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+    ## x dplyr::filter() masks stats::filter()
+    ## x dplyr::lag()    masks stats::lag()
+
+``` r
+library(cowplot)
+```
+
+    ## 
+    ## ********************************************************
+
+    ## Note: As of version 1.0.0, cowplot does not change the
+
+    ##   default ggplot2 theme anymore. To recover the previous
+
+    ##   behavior, execute:
+    ##   theme_set(theme_cowplot())
+
+    ## ********************************************************
+
+``` r
+library(ggtext)
+library(magick)
+```
+
+    ## Linking to ImageMagick 6.9.7.4
+    ## Enabled features: fontconfig, freetype, fftw, lcms, pango, x11
+    ## Disabled features: cairo, ghostscript, rsvg, webp
+
+``` r
+# Get data from Doutre et al.
+
+df <- tribble(
+  ~condition, ~awareness, ~incidence,
+  "Congenital Cytomegalovirus (CMV)", 6.7, 6000,
+  "Congenital Toxoplasmosis", 8.53, 400,
+  "Congenital Rubella Syndrome", 13.27, 3,
+  "Beta Strep (Group B Strep)", 16.91, 380,
+  "Parvovirus B19 (Fifth Disease)", 19.63, 1045,
+  "Fetal Alcohol Syndrome", 61.04, 1200,
+  "Spina Bifida", 64.54, 1500,
+  "Sudden Infant Death Syndrome (SIDS)", 78.7, 1500,
+  "Down Syndrome", 85.44, 6000,
+  "Congenital HIV/AIDS", 86.33, 30
+)
+
+# Get National CMV logo
+
+logo<-image_read("https://github.com/seth-dobson/cmv-charts/blob/master/CMV-Full-Tagline-Logo_Transparent.png?raw=true")
+
+# Create chart
+
+p <-
+  df %>%
+  ggplot(aes(x = reorder(condition, desc(awareness)), y = awareness)) +
+  geom_col(fill = "#28C1DB") +
+  geom_point(
+    aes(x = condition, y = incidence / 70),
+    size = 4,
+    pch = 21,
+    fill = "#FB791A"
+  ) +
+  scale_y_continuous(
+    sec.axis = sec_axis(
+      trans ~ . * 70, 
+      name = "Number of Children Born with the Condition Each Year (Dots)",
+      labels = scales::comma_format()
+    )
+  ) +
+  coord_flip() +
+  labs(
+    x = "",
+    y = "Percentage of Women Who Have Heard of the Condition (Bars)",
+    title = "Awareness vs Incidence of Congenital Conditions",
+    caption = "Based on US data from Doutré SM *et al.* (2016) Losing Ground: Awareness of Congenital Cytomegalovirus 
+    in the United States. *Journal of Early Hearing Detection and Intervention* 1:39-48. Chart by Artful Analytics, 
+    LLC (@_sethdobson). <br>For more information, visit nationalcmv.org."
+  ) +
+  theme_bw() +
+  theme(
+    plot.title = element_markdown(face = "bold", hjust = .5),
+    plot.caption = element_textbox_simple(size = 6, margin = margin(10, 0, 0, 0)),
+    axis.text = element_text(color = "black"),
+    axis.title = element_text(size = 10),
+    axis.title.x = element_markdown()
+  ) +
+  background_grid(major = "none") +
+  annotate(
+    geom = "text",
+    label = "Number of children\nborn with CMV",
+    x = 7.8,
+    y = 75,
+    color = "#FB791A",
+    size = 3
+  ) +
+  annotate(
+    geom = "curve", 
+    x = 8.5, 
+    y = 75, 
+    xend = 10, 
+    yend = 84,
+    curvature = -.3, 
+    arrow = arrow(length = unit(2, "mm")),
+    color = "#FB791A"
+  ) +
+  annotate(
+    geom = "text",
+    label = "% of women who have\nheard of CMV",
+    x = 7.8,
+    y = 30,
+    color = "#28C1DB",
+    size = 3
+  ) +
+  annotate(
+    geom = "curve", 
+    x = 8.5, 
+    y = 30, 
+    xend = 10, 
+    yend = 7,
+    curvature = .20, 
+    arrow = arrow(length = unit(2, "mm")),
+    color = "#28C1DB"
+  ) +
+  NULL
+
+# Combine chart with logo
+
+combo <- ggdraw() +
+  draw_plot(p) +
+  draw_image(
+    logo, 
+    x = .075, 
+    y = .1, 
+    scale = .2, 
+    hjust = .5, 
+    vjust = .5
+  )
+```
+
+A few things to note about the code above:
+
+-   The secondary x-axis is actually coded as a secondary y-axis since
+    you have to use `coord_flip()` to get the bar names on the y-axis
+    when using `geom_col()`.
+-   The `sec_axis()` function is used in conjuction with the `sec.axis`
+    option within `scale_y_continuous()`. In order to align the two
+    y-axes, I multiplied the secondary axis by 70 within `sec_axis()`
+    and divided incidence by 70 within the aesthetics of `geom_point()`.
+    The number 70 is based on trial and error. Not sure why this works,
+    but it does.
+-   I used the [ColorZilla](https://www.colorzilla.com/chrome/) Google
+    Chrome extension to get hex color values from the National CMV logo.
+    That way I was able to match the colors in the logo to the chart
+    elements without a lot of trial and error or imperfect guesswork.
+
+And here’s how the chart looks (Fig. 2). You can download a high
+resolution version [here](https://github.com/seth-dobson/cmv-charts).
+
+![](2020-05-30-charting-the-cmv-awareness-gap_files/figure-markdown_github/unnamed-chunk-2-1.png)
+<br> *Fig. 2*
+
+Conclusion
+----------
+
+Hopefully you will agree that my combination bar and dot chart is an
+improvement on the original graph (Fig. 1) in that it highlights the CMV
+awareness gap more effectively for a general audience. I also trust that
+Hadley would agree that this is an acceptable use of a secondary axis.
+Altough, he might not. So nobody tell him, OK?
+
+To learn more about congenital CMV visit
+[nationalcmv.org](https://www.nationalcmv.org/).
+
+Questions or comments?
+----------------------
+
+Feel free to reach out to me at any of the social links below.
