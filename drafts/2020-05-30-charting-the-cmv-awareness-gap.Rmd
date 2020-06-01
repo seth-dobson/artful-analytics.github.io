@@ -40,7 +40,7 @@ One of the main tactics used in CMV awareness raising efforts is to highlight th
 In the past, the National CMV Foundation has used the graphic below for this purpose (Fig. 1). It nicely shows levels of awareness vs incidence of various congenital conditions in the US, based on data from [Doutre et al. (2016)](https://digitalcommons.usu.edu/jehdi/vol1/iss2/6/).
 
 ![](/images/awareness-and-incidence.jpg)
-<br> *Fig. 1 {#anchor}*
+<br> *Fig. 1* {#anchor}
 
 Recently, I was asked by the Foundation to revise this graphic to enhance its effectiveness (not coincidentally, [my wife](https://twitter.com/ProfMuldoon) is the Chair of the Scientific Advisory Committee).
 

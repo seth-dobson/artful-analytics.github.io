@@ -1,8 +1,3 @@
----
-layout: post
-title: Charting the CMV Awareness Gap
----
-
 Using a secondary axis for a good cause
 
 Introduction
@@ -63,7 +58,7 @@ this purpose (Fig. 1). It nicely shows levels of awareness vs incidence
 of various congenital conditions in the US, based on data from [Doutre
 et al. (2016)](https://digitalcommons.usu.edu/jehdi/vol1/iss2/6/).
 
-![](/images/awareness-and-incidence.jpg) <br> *Fig. 1 {\#anchor}*
+![](/images/awareness-and-incidence.jpg) <br> *Fig. 1* {\#anchor}
 
 Recently, I was asked by the Foundation to revise this graphic to
 enhance its effectiveness (not coincidentally, [my
