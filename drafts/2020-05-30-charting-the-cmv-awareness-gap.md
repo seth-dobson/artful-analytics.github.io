@@ -299,7 +299,7 @@ Hopefully you will agree that my combination bar and dot chart is an
 improvement on the original graph (Fig. 1) in that it highlights the CMV
 awareness gap more effectively for a general audience. I also trust that
 Hadley would agree that this is an acceptable use of a secondary axis.
-Altough, he might not. So nobody tell him, OK?
+Although, he might not. So nobody tell him, OK?
 
 To learn more about congenital CMV visit
 [nationalcmv.org](https://www.nationalcmv.org/).
