@@ -66,7 +66,7 @@ Again, my rationale for using a secondary x-axis in this case is to achieve a sp
 
 Here's the R code for the chart.
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(cowplot)
 library(ggtext)
@@ -189,9 +189,7 @@ A few things to note about the code above:
 
 And here's how the chart looks (Fig. 2). You can download a high resolution version [here](https://github.com/seth-dobson/cmv-charts).
 
-```{r, echo=FALSE}
-combo
-```
+![](/images/cmv_awareness-vs-incidence_with-logo-and-arrows.png)
 <br> *Fig. 2*
 
 ## Conclusion
