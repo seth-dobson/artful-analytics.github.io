@@ -28,7 +28,7 @@ problems including:
 -   Hearing loss
 -   Vision loss
 -   Feeding issues
--   Mental disability
+-   Intellectual disability
 -   Microcephaly (small head or brain)
 -   Cerebral Palsy
 -   Seizures
