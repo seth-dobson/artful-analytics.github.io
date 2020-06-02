@@ -16,7 +16,7 @@ for a national awareness month).
 CMV is a common virus that infects 50-80% of people by the time they are
 40 years old. In most cases, it’s not a big deal. But if a pregnant
 woman becomes infected, she can pass the virus to the unborn child,
-whichs results in a congenital infection about 33% of the time.
+which results in a congenital infection about 33% of the time.
 
 Congenital CMV (cCMV) is the number one viral cause of birth defects in
 children. According to [National CMV
