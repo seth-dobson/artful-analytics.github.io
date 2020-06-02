@@ -124,7 +124,13 @@ being manipulative or misleading, becuase the gap really is quite big.
 Without further ado…
 --------------------
 
-Here’s the R code for the chart.
+Here’s how the chart looks (Fig. 2). You can download a high
+resolution version [here](https://github.com/seth-dobson/cmv-charts).
+
+![](/images/cmv_awareness-vs-incidence_with-logo-and-arrows.png) <br>
+*Fig. 2*
+
+And here’s the R code that produces the chart.
 
 ``` r
 library(tidyverse)
@@ -226,7 +232,7 @@ p <- df %>%
 
 # Combine chart with logo
 
-combo <- ggdraw() +
+ggdraw() +
   draw_plot(p) +
   draw_image(
     logo, 
@@ -258,12 +264,6 @@ A few things to note about the code above:
     `plot.caption` theme element in [markdown](https://en.wikipedia.org/wiki/Markdown), so I can easily italicize
     selected words with asterisks. The `element_textbox_simple()` function from
     {ggtext} also does word wrapping automatically.
-
-And here’s how the chart looks (Fig. 2). You can download a high
-resolution version [here](https://github.com/seth-dobson/cmv-charts).
-
-![](/images/cmv_awareness-vs-incidence_with-logo-and-arrows.png) <br>
-*Fig. 2*
 
 Conclusion
 ----------
