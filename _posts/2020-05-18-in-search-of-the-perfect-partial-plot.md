@@ -399,3 +399,7 @@ perfectPartialPlot <- function(df, x, y){
 ## Questions or comments?
 
 Feel free to reach out to me at any of the social links below.
+
+**For more R content, please visit
+[R-bloggers](https://www.r-bloggers.com/) and
+[RWeekly.org](https://rweekly.org/).**
