@@ -84,7 +84,7 @@ mirrored, diverging, or back-to-back bar chart. It is reminiscent of
 charts often used to visualize population age distributions.
 
 I suspect that when people see Fig. 1 they have a perceptual tendency to
-sum the bars toghether rather than take the difference between each bar.
+sum the bars together rather than take the difference between each bar.
 The former is typically how a bi-directional bar chart would be
 interpreted. But since the purpose of the visualization is to highlight
 the CMV awareness gap, it might be better to actually plot the gap
@@ -243,22 +243,22 @@ combo <- ggdraw() +
 A few things to note about the code above:
 
 -   The secondary x-axis is actually coded as a secondary y-axis since
-    you have to use `coord_flip()` to get the bar names on the y-axis
+    you have to use `coord_flip()` to get the categorical variable on the y-axis
     when using `geom_col()`.
 -   The `sec_axis()` function is used in conjuction with the `sec.axis`
     option within `scale_y_continuous()`. In order to align the two
     y-axes, I multiplied the secondary axis by 70 within `sec_axis()`
     and divided incidence by 70 within the aesthetics of `geom_point()`.
-    The number 70 is based on trial and error. Not sure why this works,
+    I arrived at the number 70 by trial and error. Not sure why this works,
     but it does.
 -   I used the [ColorZilla](https://www.colorzilla.com/chrome/) Google
     Chrome extension to get hex color values from the National CMV logo.
     That way I was able to match the colors in the logo to the chart
-    elements without a lot of trial and error or imperfect guesswork.
+    elements without a lot imperfect guesswork.
 -   Also note that I am using the amazing
     [ggtext](https://wilkelab.org/ggtext/) package to render the
     `plot.caption` theme element in markdown, so I can easily italicize
-    selected words with asterisks. The `element_textbox_simple()` from
+    selected words with asterisks. The `element_textbox_simple()` function from
     {ggtext} also does word wrapping automatically.
 
 And here’s how the chart looks (Fig. 2). You can download a high
