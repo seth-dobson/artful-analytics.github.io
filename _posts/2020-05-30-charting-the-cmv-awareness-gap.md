@@ -253,9 +253,9 @@ A few things to note about the code above:
     Chrome extension to get hex color values from the National CMV logo.
     That way I was able to match the colors in the logo to the chart
     elements without a lot of guesswork.
--   Also note that I am using the amazing
-    [ggtext](https://wilkelab.org/ggtext/) package to render the
-    `plot.caption` theme element in markdown, so I can easily italicize
+-   I am using the amazing
+    [ggtext](https://wilkelab.org/ggtext/) package by [Claus Wilke](https://twitter.com/ClausWilke) to render the
+    `plot.caption` theme element in [markdown](https://en.wikipedia.org/wiki/Markdown), so I can easily italicize
     selected words with asterisks. The `element_textbox_simple()` function from
     {ggtext} also does word wrapping automatically.
 
