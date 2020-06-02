@@ -3,7 +3,7 @@ layout: post
 title: Charting the CMV Awareness Gap
 ---
 
-Sometimes a secondary axis is OK
+Sometimes it's okay to use a secondary axis
 
 Introduction
 ------------
@@ -154,8 +154,7 @@ logo <- image_read("https://github.com/seth-dobson/cmv-charts/blob/master/CMV-Fu
 
 # Create chart
 
-p <-
-  df %>%
+p <- df %>%
   ggplot(aes(x = reorder(condition, desc(awareness)), y = awareness)) +
   geom_col(fill = "#28C1DB") +
   geom_point(
@@ -166,7 +165,7 @@ p <-
   ) +
   scale_y_continuous(
     sec.axis = sec_axis(
-      trans ~ . * 70, 
+      ~ . * 70, 
       name = "Number of Children Born with the Condition Each Year (Dots)",
       labels = scales::comma_format()
     )
@@ -223,8 +222,7 @@ p <-
     curvature = .20, 
     arrow = arrow(length = unit(2, "mm")),
     color = "#28C1DB"
-  ) +
-  NULL
+  )
 
 # Combine chart with logo
 
@@ -254,7 +252,7 @@ A few things to note about the code above:
 -   I used the [ColorZilla](https://www.colorzilla.com/chrome/) Google
     Chrome extension to get hex color values from the National CMV logo.
     That way I was able to match the colors in the logo to the chart
-    elements without a lot imperfect guesswork.
+    elements without a lot of guesswork.
 -   Also note that I am using the amazing
     [ggtext](https://wilkelab.org/ggtext/) package to render the
     `plot.caption` theme element in markdown, so I can easily italicize
