@@ -268,7 +268,7 @@ A few things to note about the code above:
 Conclusion
 ----------
 
-Hopefully you will agree that my combination bar and dot chart is an
+Hopefully you will agree that my combination bar and dot chart (Fig. 2) is an
 improvement on the original graph (Fig. 1) in that it highlights the CMV
 awareness gap more effectively for a general audience. I also trust that
 Hadley would agree that this is an acceptable use of a secondary axis.
