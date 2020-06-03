@@ -21,7 +21,7 @@ which results in a congenital infection about 33% of the time.
 Congenital CMV (cCMV) is the number one viral cause of birth defects in
 children. According to [National CMV
 Foundation](https://www.nationalcmv.org/default.aspx), 1 in 200 children
-are born with CMV every year. That’s roughly 6,000 children. About 1 in
+are born with CMV every year. That’s roughly 30,000 children. About 1 in
 5 children born with CMV infection will have moderate to severe health
 problems including:
 
@@ -36,7 +36,7 @@ problems including:
 [Outcomes](https://www.nationalcmv.org/overview/outcomes) associated
 with congenital CMV are wide-ranging and unpredictable.
 
-Despite how common and potentially damaging CMV is, research shows that
+Despite how common and potentially damaging CMV is, [research shows](https://digitalcommons.usu.edu/jehdi/vol1/iss2/6/) that
 **only 9% of women have heard of the condition.**
 
 Awareness = prevention
@@ -56,7 +56,7 @@ National CMV Awareness Month.
 
 One of the main tactics used in CMV awareness raising efforts is to
 highlight the “awareness gap” between how few women have heard of CMV
-and how many children are born with the condition each year.
+and how many children are disabled by the condition each year.
 
 In the past, the National CMV Foundation has used the graphic below for
 this purpose (Fig. 1). It nicely shows levels of awareness vs incidence
@@ -88,7 +88,7 @@ sum the bars together rather than take the difference between each bar.
 The former is typically how a bi-directional bar chart would be
 interpreted. But since the purpose of the visualization is to highlight
 the CMV awareness gap, it might be better to actually plot the gap
-(linear distance) between awareness and incidence for cCMV in comparison
+(linear distance) between awareness and incidence of long-term health problems for cCMV in comparison
 to other conditions.
 
 So my proposed enhancement is to layer the incidence data as a series of
@@ -117,7 +117,7 @@ used with caution.
 
 Again, my rationale for using a secondary x-axis in this case is to
 achieve a specific perceptual effect, to higlight the gap between cCMV
-awareness and incidence visually so that people viewing the chart will
+awareness and incidence of disability visually so that people viewing the chart will
 say “Wow! That’s some big gap.” And I think I can achieve this without
 being manipulative or misleading, becuase the gap really is quite big.
 
