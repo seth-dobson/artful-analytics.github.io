@@ -45,7 +45,7 @@ Pages using Jekyll and RStudio Cloud.
 Getting started with Jekyll Now
 -------------------------------
 
-Barry Clark has written an excellent tutorial entitled [Build A Blog
+[Barry Clark](https://twitter.com/barrycnyc) has written an excellent tutorial entitled [Build A Blog
 With Jekyll And GitHub
 Pages](https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/)
 that you should read. In this section, I will briefly summarize some of
@@ -72,7 +72,7 @@ Lastly, you should update the `about.md` file in the main branch if you
 want to have an “About Me” page on your blog that is well…about you.
 
 After following these simple steps to set up your blog, you’re ready to
-connect to RStudio Cloud and start writing \#rstats posts.
+connect to RStudio Cloud and start writing posts.
 
 Writing Posts in RStudio Cloud
 ------------------------------
