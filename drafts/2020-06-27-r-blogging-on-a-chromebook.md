@@ -91,9 +91,10 @@ do the rest!
 The next thing you’ll want to do is configure Git in the RStudio Cloud
 terminal tab with the following lines of code:
 
-`git config --global user.email "your email address"`
-
-`git config --global user.name "your GitHub user name"`
+``` r
+git config --global user.email "your email address"
+git config --global user.name "your GitHub user name"
+```
 
 Now you can add, commit, and push to your heart’s content (If you have
 no idea what the heck I’m talking about, read this [Git/GitHub
