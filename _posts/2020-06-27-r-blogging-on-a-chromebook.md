@@ -74,7 +74,7 @@ want to have an “About Me” page on your blog that is well…about you.
 After following these simple steps to set up your blog, you’re ready to
 connect to RStudio Cloud and start writing posts.
 
-Writing Posts in RStudio Cloud
+Writing posts in RStudio Cloud
 ------------------------------
 
 ### Connect to repository
@@ -137,7 +137,7 @@ folder. Now you’re ready to publish.
 Publishing on GitHub Pages
 --------------------------
 
-### Commit and Push Changes
+### Commit and Push changes
 
 To publish your post on GitHub Pages, you need to Commit and Push the
 changes to your project. I use the Git tab in RStudio Cloud for this.
