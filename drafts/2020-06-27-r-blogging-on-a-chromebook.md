@@ -29,7 +29,7 @@ viable option. Blogdown requires you to download Hugo and build your
 site locally, which defeats the purpose of a Chromebook in my opinion.
 I’d rather do everything in the cloud if possible.
 
-Fortunately, RStudio Cloud has excellent integration with GitHub, and
+Fortunately, RStudio Cloud has excellent integration with [GitHub](https://github.com/), and
 [GitHub Pages](https://pages.github.com/) lets you create a blog
 directly from a repository with [Jekyll](https://jekyllrb.com/). Like
 Hugo, Jekyll is a static website generator. The advantage of Jekyll for
@@ -37,8 +37,7 @@ Chromebook and/or RStudio Cloud users is that setting up a blog is as
 easy as [forking a
 repository](https://help.github.com/en/github/getting-started-with-github/fork-a-repo)
 (see below). With Jekyll, there is no need to download anything, or to
-build the site locally before deploying it GitHub Pages. You can, but
-it’s not necessary.
+build the site locally before deploying it GitHub Pages.
 
 In this post, I will describe how to quickly set up an R blog on GitHub
 Pages using Jekyll and RStudio Cloud.
