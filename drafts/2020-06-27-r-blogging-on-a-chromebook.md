@@ -101,14 +101,14 @@ no idea what the heck I’m talking about, read this [Git/GitHub
 tutorial](https://kbroman.org/github_tutorial/) by [Karl
 Broman](https://twitter.com/kwbroman)).
 
-### Create RMarkdown file
+### Create R Markdown file
 
 After you get your GitHub repo connected to RStudio Cloud, you’re ready
 to start writing your posts.
 
 Jekyll uses [Markdown](https://www.markdownguide.org/getting-started/)
 files to create your website, but you will want to write your posts in
-RMarkdown. That means you have to create a new RMarkdwon document and
+R Markdown. That means you have to create a new R Markdwon document and
 add the following to the [YAML](https://en.wikipedia.org/wiki/YAML)
 front matter so you can [knit](https://yihui.org/knitr/) to Markdown.
 
