@@ -1,3 +1,8 @@
+---
+layout: post
+title: R Blogging on a Chromebook
+---
+
 A simple approach using Jekyll, GitHub, and RStudio Cloud
 
 Introduction
@@ -88,6 +93,7 @@ The next thing you’ll want to do is configure Git in the RStudio Cloud
 terminal tab with the following lines of code:
 
 `git config --global user.email "your email address"`
+
 `git config --global user.name "your GitHub user name"`
 
 Now you can add, commit, and push to your heart’s content (If you have
@@ -106,7 +112,11 @@ RMarkdown. That means you have to create a new RMarkdwon document and
 add the following to the [YAML](https://en.wikipedia.org/wiki/YAML)
 front matter so you can [knit](https://yihui.org/knitr/) to Markdown.
 
-output: md\_document: variant: markdown\_github
+``` r
+output: 
+  md_document: 
+    variant: markdown_github
+```
 
 Save your .Rmd files in the format year-month-day-title.Rmd. I save mine
 to a “drafts” folder in the main branch of my blog’s repo/project. If
@@ -152,7 +162,10 @@ the .md file. Each image should be coded as
 You should also add the following to the YAML front matter of the .md
 file.
 
-layout: post title: Title of Post
+``` r
+layout: post 
+title: Title of Post
+```
 
 Conclusion
 ----------
@@ -171,4 +184,4 @@ Feel free to reach out to me at any of the social links below.
 
 **For more R content, please visit
 [R-bloggers](https://www.r-bloggers.com/) and
-\[RWeekly.org\](<a href="https://rweekly.org/" class="uri">https://rweekly.org/</a>.**
+[RWeekly.org](https://rweekly.org/)**
