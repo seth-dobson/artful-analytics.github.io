@@ -1,0 +1,18 @@
+---
+title: 'Causal Forests: A Marketing Analytics Game Changer'
+author: "Seth Dobson"
+date: "6/30/2020"
+output: 
+  md_document: 
+    variant: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+Using machine learning to assess campaign performance and gain predictive insights

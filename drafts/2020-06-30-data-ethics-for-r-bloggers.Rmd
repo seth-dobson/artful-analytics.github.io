@@ -1,0 +1,32 @@
+---
+title: "Data Ethics for R Bloggers"
+author: "Seth Dobson"
+date: "6/30/2020"
+output: 
+  md_document: 
+    variant: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+Why you should think twice about using the Pima Indian diabetes dataset
+
+## Introduction
+
+## The dataset
+
+## Why not use it?
+
+### For starters...
+
+### Impossible consent
+
+### A sad matters
+
+## Conclusion

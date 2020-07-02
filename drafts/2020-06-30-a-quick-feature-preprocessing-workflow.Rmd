@@ -1,0 +1,266 @@
+---
+title: "A Quick Feature Preprocessing Workflow"
+author: "Seth Dobson"
+date: "6/30/2020"
+output: 
+  md_document: 
+    variant: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+Using the {Information}, {vtreat}, and {caret} pacakges
+
+## Introduction
+
+This notebook describes a feature preprocessing workflow for modeling projects, including some basic feature selection and engineering (FSE) steps. These methods reflect modeling best practices as I understand them based on two recent sources.
+
+* [*Practical Data Science with R*](https://ninazumel.com/practical-data-science-with-r/) (2019) by Nina Zumel and Jount Mount
+* [*Feature Engineering and Selection: A Practical Approach for Predictive Models*](http://www.feat.engineering/) (2020) by Max Kuhn and Kjell Johnson
+
+The overall goal of the approach described here is to provide highly relevent and non-redundant inputs to an XGBoost classification algorithm.
+
+**Why is this necessary?**
+
+Because xGBoost is a [high-variance/low-bias](https://machinelearningmastery.com/gentle-introduction-to-the-bias-variance-trade-off-in-machine-learning/) method, we need to guard against overfitting during model training.
+
+As stated by Zumel and Mount, 
+
+> To control for this effect, we often preselect which subsets of variables we'll use to fit. Variable selection can be an important defensive 
+> modeling step, even for types of models that "don't need it." The large number of columns typically seen in modern data warehouses can overwhelm 
+> even state-of-the-art machine learning algorithms.
+
+An additional advantage of filtering out irrelevant variables before model fitting is reduced computation time. This can be helpful for algorithms that involve a lot of parameter tuning, like XGBoost.
+
+## Load packages
+
+```{r}
+library(dplyr)
+library(Information)
+library(rsample)
+library(caret)
+library(tidyselect)
+library(vtreat)
+library(stringr)
+```
+
+## Get example data
+
+I will use some example data form the {Information} package to show how this works. The data are from a marketing campaign with a treat-control design. I will use only the treated data. 
+
+The dataset is clean (all numeric), so I'm going to dirty it up a bit by making the `unique_id` variable a character and grouping the `d_region` indicators into one character variable with 4 levels.
+
+```{r example data}
+df1 <- Information::train
+df2 <- Information::valid
+
+df <- 
+  df1 %>%
+  bind_rows(df2) %>% 
+  rename_with(~str_to_lower(.)) %>% 
+  filter(treatment == 1) %>% 
+  select(-treatment) %>% 
+  mutate(
+    unique_id = as.character(unique_id),
+    d_region = case_when(
+      d_region_a == 1 ~ "a",
+      d_region_b == 1 ~"b",
+      d_region_c == 1 ~ "c",
+      TRUE  ~ "d"
+    )
+  ) %>% 
+  select(-c("d_region_a", "d_region_b", "d_region_c"))
+
+rm(list = c("df1", "df2"))
+```
+
+## Split data
+
+**Never use the same data for feature engineering and model training as this could result in nested model bias.**
+
+See [this article](https://win-vector.com/2016/04/26/on-nested-models/) for more information.
+
+Instead, do a three way split:
+
+* 60% for model training
+* 20% for FSE
+* 20% for testing
+
+```{r split data}
+set.seed(12345)
+
+split1 <- initial_split(df, 0.6, strata = purchase)
+df_train <- training(split1)
+df_split2 <- testing(split1) # for spliting FSE and test samples
+
+split2 <- initial_split(df_split2, 0.5, strata = purchase)
+df_fse <- training(split2)
+df_test <- testing(split2)
+
+rm(list = c("df", "df_split2", "split1", "split2"))
+```
+
+Check to make the sure the split worked properly by seeing if the response variable mean is the same between samples.
+
+```{r check response}
+tibble(
+  fse = mean(df_fse$purchase),
+  train = mean(df_train$purchase),
+  test = mean(df_test$purchase)
+)
+```
+
+## Get information value
+
+Information value (IV) lets you measure the strength of association betweeen the response and each predictor individually. It's a good way to filter out irrelevant variables prior to building the model.
+
+There are several advantages of IV over other filtering methods. IV can:
+
+* Detect linear **and** non-linear relationships
+* Directly compare continuous and categorical variables
+* Handle missing data without imputation
+* Assess the predictive power of missing values
+
+It is good practice to split the FSE dataset again prior to estimating IV. This allows you to adjust the IV estimates using cross-validation, so that variables that have a high IV by chance do not get past the filter.
+
+See the {Information} package [vignette](https://cran.r-project.org/web/packages/Information/vignettes/Information-vignette.html) for more...um... information `r emo::ji("smile")`.
+
+```{r information value}
+set.seed(666)
+
+iv_split <- initial_split(df_fse, 0.5, strata = "purchase")
+df_iv_train <- training(iv_split)
+df_iv_test <- testing(iv_split)
+
+iv <- create_infotables(
+  data = df_iv_train,
+  valid = df_iv_test,
+  y = "purchase"
+)
+```
+
+Notice that the `uniqe_id` variable was ignored because it has too many levels. This is a handy feature of the {Information} package when dealing with large datasets. It automatically ignores "junk" variables, like customer IDs and zip codes. Anything that's non-numeric with more than 1,000 levels does not get included in the IV estimation. In other words, the `create_infotables()` function will do some of the data cleaning for you!
+
+Now we need to pick a threshold for excluding variables based on IV. This is subjective. But in general, the rule of thumb is:
+
+| IV  |  Predictive Power |
+|---|---|
+| <0.02  |  useless |
+| 0.02 to 0.1  |  weak |
+| 0.1 to 0.3  | medium  |
+| 0.3 to 0.5  |  strong |
+|  >0.5 |  suspicious |
+
+You don't want to be too restrictive at this stage, especially if you are using a modeling approach that has a built-in feature selection process, like XGBoost. Typically, I would just drop all variables with IV <0.02 because they're probably irrelevant. However, in the case of the **MLTA Member model**, I decided to take the top 200 variables ranked by IV. This is because the vast majority of the predictors had very low IV estimates.
+
+```{r top predictors}
+top_iv <- iv$Summary  %>% 
+  filter(AdjIV > 0.02) # alternatively, use top_n() 
+
+top_nm <- as.character(top_iv$Variable)
+
+top_iv
+```
+
+## Feature engineering with {vtreat}
+
+The [vtreat](https://winvector.github.io/vtreat/) package will automatically:
+
+* Replace NAs with mean (numeric) or majority class (non-numeric)
+* Create missing-indicator variables
+* Dummy code all non-numeric variables with frequency >2% (rare levels grouped together)
+* Truncate numeric distributions to mitigate outliers
+* Create derived versions of non-numeric variables using
+  * Prevalance coding
+  * [Impact coding](https://win-vector.com/2012/07/23/modeling-trick-impact-coding-of-categorical-variables-with-many-levels/)
+
+Prevalence coding replaces the levels of a categorical variable with the fraction each level is observed in the dataset. Impact coding uses the marginal effect from a single-variable logistic regression as a replacement for each level in a categorical variable.
+
+These transformations should be reproducible in SQL using case-when statements.
+
+### Create treatment plan
+
+Use the `designTreatmentsC()` function to create a variable treatment plan for classification models. There are a lot of options for this function, so check the documentation.
+
+```{r create treatment plan}
+df_vtreat <- df_fse %>% 
+  select(all_of(top_nm), purchase) 
+
+vtreat_plan <- designTreatmentsC(
+  dframe = df_vtreat,
+  varlist = top_nm,
+  outcomename = "purchase",
+  outcometarget = 1,
+  collarProb = .025
+)
+```
+
+### Prepare training data
+
+After you have the treatment plan object, you can apply it to a new dataset using `prepare()`. This creates a new data frame with treated variables based on the `codeRestriction` argument. Save the treatment plan (`vtreat_plan`) as an .RDS object so you can apply it to the test data prior to generating predictions with the XGBoost model object.
+
+```{r treat training data}
+df_train2 <- prepare(
+  treatmentplan = vtreat_plan,
+  dframe = df_train,
+  codeRestriction = c("clean", "lev", "catB", "catP", "isBAD"),
+  doCollar = TRUE
+)
+```
+
+### Derived variables
+
+Notice that the original `d_region` character variable has been transformed into 4 dummy indicators, plus 2 derived variables based on prevalence ("catP") and impact coding ("catB"). The `prepare()` function will do this for every non-numeric variable in the dataset.
+
+```{r check d_region}
+df_train2 %>% 
+  select(contains("d_region")) %>% 
+  head()
+```
+
+## Remove redundant variables
+
+Redundant variables are predictors that are highly correlated with one or more other predictors in the dataset.
+
+From a predictive accuracy standpoint, it is not strictly necessary to remove redundant variables prior to model fitting. This is one of the many distinctions between [predictive and explanatory modeling](https://www.stat.berkeley.edu/~aldous/157/Papers/shmueli.pdf).
+
+However, when using tree-based algorithms, **it is necessary to remove redundant predictors in order to get accurate estimates of variable importance**. As noted by Khun and Johnson,
+
+> If there are highly correlated predictors in a training set that are useful for predicting the outcome, then which predictor is chosen is 
+> essentially a random selection. It is common to see that a set of highly redundant and useful predictors are all used in the splits across the 
+> ensemble of trees. In this scenario, the predictive performance of the ensemble of trees is unaffected by highly correlated, useful features. 
+> However, the redundancy of the features dilutes the importance scores.
+
+If you are doing an initial run of XGBoost, taking the top 50 predictors based on variable importance, and then tuning the XGBoost parameters using those predictors, then removing redundant variables prior to model fitting could help.
+
+To find the most redudant features in a dataset, you can use the `findCorrelation()` function from the [{Caret}](https://topepo.github.io/caret/) package.
+
+```{r find correlated}
+corr_vars <- findCorrelation(
+  cor(
+    df_train2,
+    method = "spearman"
+  ),
+  cutoff = 0.9,
+  names = TRUE,
+  exact = TRUE
+)
+
+corr_vars
+```
+
+## Final training set
+
+After removing `r length(corr_vars)` redundant variables, the final dataset has 43 predictors that are all numeric and ready for model training.
+
+```{r final dataset}
+df_train3 <- df_train2 %>% select(-all_of(corr_vars))
+
+str(df_train3)
+```
