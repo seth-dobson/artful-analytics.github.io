@@ -15,28 +15,21 @@ knitr::opts_chunk$set(
 )
 ```
 
-Using the {Information}, {vtreat}, and {caret} pacakges
+How I deal with wide datasets when I'm pressed for time
 
 ## Introduction
 
-This notebook describes a feature preprocessing workflow for modeling projects, including some basic feature selection and engineering (FSE) steps. These methods reflect modeling best practices as I understand them based on two recent sources.
+In this post, I will describe a preprocessing workflow for predictive modeling projects that I use whenever I have a lot variables (wide data) and not a lot time to do in-depth exploratory data analysis.
 
-* [*Practical Data Science with R*](https://ninazumel.com/practical-data-science-with-r/) (2019) by Nina Zumel and Jount Mount
-* [*Feature Engineering and Selection: A Practical Approach for Predictive Models*](http://www.feat.engineering/) (2020) by Max Kuhn and Kjell Johnson
+The workflow has three stages:
 
-The overall goal of the approach described here is to provide highly relevent and non-redundant inputs to an XGBoost classification algorithm.
+* Univariate feature selection using the {Information} package
+* Feature engineering using the {vtreat} package
+* Removal of redundant features using the {caret} package
 
-**Why is this necessary?**
+The overall goal of the approach described here is to provide a reasonable number of highly relevent and non-redundant inputs to tree-based classifcation algorithms, such as random forests or gradient boosting machines.
 
-Because xGBoost is a [high-variance/low-bias](https://machinelearningmastery.com/gentle-introduction-to-the-bias-variance-trade-off-in-machine-learning/) method, we need to guard against overfitting during model training.
-
-As stated by Zumel and Mount, 
-
-> To control for this effect, we often preselect which subsets of variables we'll use to fit. Variable selection can be an important defensive 
-> modeling step, even for types of models that "don't need it." The large number of columns typically seen in modern data warehouses can overwhelm 
-> even state-of-the-art machine learning algorithms.
-
-An additional advantage of filtering out irrelevant variables before model fitting is reduced computation time. This can be helpful for algorithms that involve a lot of parameter tuning, like XGBoost.
+Let's start by loading the necessary packages and getting some example data.
 
 ## Load packages
 
@@ -50,11 +43,11 @@ library(vtreat)
 library(stringr)
 ```
 
-## Get example data
+## Example data
 
-I will use some example data form the {Information} package to show how this works. The data are from a marketing campaign with a treat-control design. I will use only the treated data. 
+I will use a dataset from the {Information} package to illustrate the workflow (actually two datasets, one called `train` and the other called `valid`). The data represent a marketing campaign with a treat-control design. If we limit the dataset to the treated group, that gives us >10,000 records and 70 variables. The response variable `purchase` is 1 or 0 depending on whether the customer made a purchase or not. The predictors are mainly credit bureau variables. 
 
-The dataset is clean (all numeric), so I'm going to dirty it up a bit by making the `unique_id` variable a character and grouping the `d_region` indicators into one character variable with 4 levels.
+Since the dataset is clean (all numeric), I'm going to dirty it up a bit by making `unique_id` a character variable, and grouping the `d_region` indicators into one character variable with 4 levels.
 
 ```{r example data}
 df1 <- Information::train
