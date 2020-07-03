@@ -29,7 +29,7 @@ The workflow has three stages:
 
 The overall goal of the approach described here is to provide a reasonable number of highly relevent and non-redundant inputs to tree-based classifcation algorithms, such as random forests or gradient boosting machines.
 
-Let's start by loading the necessary packages and getting some example data.
+Let's start by loading the necessary packages and then get some example data.
 
 ## Load packages
 
@@ -53,8 +53,7 @@ Since the dataset is clean (all numeric), I'm going to dirty it up a bit by maki
 df1 <- Information::train
 df2 <- Information::valid
 
-df <- 
-  df1 %>%
+df <- df1 %>%
   bind_rows(df2) %>% 
   rename_with(~str_to_lower(.)) %>% 
   filter(treatment == 1) %>% 
@@ -75,15 +74,7 @@ rm(list = c("df1", "df2"))
 
 ## Split data
 
-**Never use the same data for feature engineering and model training as this could result in nested model bias.**
-
-See [this article](https://win-vector.com/2016/04/26/on-nested-models/) for more information.
-
-Instead, do a three way split:
-
-* 60% for model training
-* 20% for FSE
-* 20% for testing
+**Never use the same data for feature preprocessing and model training as this could result in nested model bias.** Instead, do a three-way split. For example, I will use 60% of the example data for model training, 20% for feature preprocessing, and 20% for testing. See [this article](https://win-vector.com/2016/04/26/on-nested-models/) for more information about nested model bias and how to avoid it.
 
 ```{r split data}
 set.seed(12345)
@@ -111,18 +102,11 @@ tibble(
 
 ## Get information value
 
-Information value (IV) lets you measure the strength of association betweeen the response and each predictor individually. It's a good way to filter out irrelevant variables prior to building the model.
+Information value (IV) is a highly flexible approach that lets you measure the strength of association betweeen the response and each predictor individually. It's a good way to filter out irrelevant variables prior to building a model.
 
-There are several advantages of IV over other filtering methods. IV can:
+There are several advantages of IV over other filtering methods. IV can (1) detect linear **and** non-linear relationships, (2) directly compare continuous and categorical variables, (3) handle missing data without imputation, and (4) assess the predictive power of missing values.
 
-* Detect linear **and** non-linear relationships
-* Directly compare continuous and categorical variables
-* Handle missing data without imputation
-* Assess the predictive power of missing values
-
-It is good practice to split the FSE dataset again prior to estimating IV. This allows you to adjust the IV estimates using cross-validation, so that variables that have a high IV by chance do not get past the filter.
-
-See the {Information} package [vignette](https://cran.r-project.org/web/packages/Information/vignettes/Information-vignette.html) for more...um... information `r emo::ji("smile")`.
+It is good practice to split the preprocessing dataset again prior to estimating IV. This allows you to adjust the IV estimates using cross-validation, so that variables that have high IV by chance do not get past the filter. See the {Information} package [vignette](https://cran.r-project.org/web/packages/Information/vignettes/Information-vignette.html) for more details.
 
 ```{r information value}
 set.seed(666)
@@ -138,9 +122,11 @@ iv <- create_infotables(
 )
 ```
 
-Notice that the `uniqe_id` variable was ignored because it has too many levels. This is a handy feature of the {Information} package when dealing with large datasets. It automatically ignores "junk" variables, like customer IDs and zip codes. Anything that's non-numeric with more than 1,000 levels does not get included in the IV estimation. In other words, the `create_infotables()` function will do some of the data cleaning for you!
+Notice that the `uniqe_id` variable was ignored because it has too many levels. This is a handy feature of the {Information} package when dealing with large datasets. It automatically ignores "junk" variables, like customer IDs and zip codes. Anything that's non-numeric with more than 1,000 levels does not get included in the IV estimation process.
 
-Now we need to pick a threshold for excluding variables based on IV. This is subjective. But in general, the rule of thumb is:
+The `create_infotables()` function will create a data frame (accessible via `$Summary`) with IV estimates for each predictor, along with a cross-validation penalty and the adjusted IV score.
+
+Once you have the IV estimates, you will need to pick a threshold for excluding variables based on adjusted IV. This is subjective. But in general, the rule of thumb is:
 
 | IV  |  Predictive Power |
 |---|---|
@@ -150,16 +136,18 @@ Now we need to pick a threshold for excluding variables based on IV. This is sub
 | 0.3 to 0.5  |  strong |
 |  >0.5 |  suspicious |
 
-You don't want to be too restrictive at this stage, especially if you are using a modeling approach that has a built-in feature selection process, like XGBoost. Typically, I would just drop all variables with IV <0.02 because they're probably irrelevant. However, in the case of the **MLTA Member model**, I decided to take the top 200 variables ranked by IV. This is because the vast majority of the predictors had very low IV estimates.
+**You don't want to be too restrictive at this stage**, especially if you are using a modeling approach that has a built-in feature selection process, as is the case with tree-based methods. Typically, I would just drop all variables with IV <0.02 because they're probably not going to add anything but noise. However, if most of the variables have relatively low IV scores, I would take the `top_n()` and hope for the best.
 
 ```{r top predictors}
 top_iv <- iv$Summary  %>% 
   filter(AdjIV > 0.02) # alternatively, use top_n() 
 
-top_nm <- as.character(top_iv$Variable)
+top_nm <- as.character(top_iv$Variable) # save names for filtering
 
 top_iv
 ```
+
+As you can see, filtering by adjusted IV reduces the number of predictors in our example dataset to 41. That implies that 37% of the original 65 predictors where probably "useless."
 
 ## Feature engineering with {vtreat}
 
