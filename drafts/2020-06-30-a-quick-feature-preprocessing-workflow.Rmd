@@ -1,10 +1,12 @@
 ---
-title: "A Quick Feature Preprocessing Workflow"
+title: "A Feature Preprocessing Workflow"
 author: "Seth Dobson"
 date: "6/30/2020"
 output: 
   md_document: 
     variant: markdown_github
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup, include=FALSE}
@@ -15,11 +17,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-How I deal with wide datasets when I'm pressed for time
+How I deal with wide datasets when building a predictive model
 
 ## Introduction
 
-In this post, I will describe a preprocessing workflow for predictive modeling projects that I use whenever I have a lot variables (wide data) and not a lot time to do in-depth exploratory data analysis.
+In this post, I will describe a preprocessing workflow that I use whenever I have a lot variables (wide data), and I need to build a predictive model.
 
 The workflow has three stages:
 
@@ -29,11 +31,10 @@ The workflow has three stages:
 
 The overall goal of the approach described here is to provide a reasonable number of highly relevent and non-redundant inputs to tree-based classifcation algorithms, such as random forests or gradient boosting machines.
 
-Let's start by loading the necessary packages and then get some example data.
+To show how it works, let's start by loading the necessary packages, and then get some example data.
 
-## Load packages
-
-```{r}
+```{r load packages}
+# load packages
 library(dplyr)
 library(Information)
 library(rsample)
@@ -47,12 +48,14 @@ library(stringr)
 
 I will use a dataset from the {Information} package to illustrate the workflow (actually two datasets, one called `train` and the other called `valid`). The data represent a marketing campaign with a treat-control design. If we limit the dataset to the treated group, that gives us >10,000 records and 70 variables. The response variable `purchase` is 1 or 0 depending on whether the customer made a purchase or not. The predictors are mainly credit bureau variables. 
 
-Since the dataset is clean (all numeric), I'm going to dirty it up a bit by making `unique_id` a character variable, and grouping the `d_region` indicators into one character variable with 4 levels.
+Since the dataset is clean (all numeric), I'm going to dirty it up a bit by making `unique_id` a character variable, and grouping the `d_region` indicators into one character variable with 4 values.
 
 ```{r example data}
+# get example datasets
 df1 <- Information::train
 df2 <- Information::valid
 
+# combine into one data frame and dirty it up
 df <- df1 %>%
   bind_rows(df2) %>% 
   rename_with(~str_to_lower(.)) %>% 
@@ -72,19 +75,21 @@ df <- df1 %>%
 rm(list = c("df1", "df2"))
 ```
 
-## Split data
+## Data partitioning
 
 **Never use the same data for feature preprocessing and model training as this could result in nested model bias.** Instead, do a three-way split. For example, I will use 60% of the example data for model training, 20% for feature preprocessing, and 20% for testing. See [this article](https://win-vector.com/2016/04/26/on-nested-models/) for more information about nested model bias and how to avoid it.
 
 ```{r split data}
 set.seed(12345)
 
+# create split between train and the rest
 split1 <- initial_split(df, 0.6, strata = purchase)
 df_train <- training(split1)
-df_split2 <- testing(split1) # for spliting FSE and test samples
+df_split2 <- testing(split1)
 
+# create split between preprocessing and test
 split2 <- initial_split(df_split2, 0.5, strata = purchase)
-df_fse <- training(split2)
+df_pre <- training(split2)
 df_test <- testing(split2)
 
 rm(list = c("df", "df_split2", "split1", "split2"))
@@ -94,27 +99,33 @@ Check to make the sure the split worked properly by seeing if the response varia
 
 ```{r check response}
 tibble(
-  fse = mean(df_fse$purchase),
+  pre = mean(df_pre$purchase),
   train = mean(df_train$purchase),
   test = mean(df_test$purchase)
 )
 ```
 
-## Get information value
+## Information value
 
 Information value (IV) is a highly flexible approach that lets you measure the strength of association betweeen the response and each predictor individually. It's a good way to filter out irrelevant variables prior to building a model.
 
-There are several advantages of IV over other filtering methods. IV can (1) detect linear **and** non-linear relationships, (2) directly compare continuous and categorical variables, (3) handle missing data without imputation, and (4) assess the predictive power of missing values.
+There are several advantages of IV over other filtering methods. 
 
-It is good practice to split the preprocessing dataset again prior to estimating IV. This allows you to adjust the IV estimates using cross-validation, so that variables that have high IV by chance do not get past the filter. See the {Information} package [vignette](https://cran.r-project.org/web/packages/Information/vignettes/Information-vignette.html) for more details.
+* IV detect linear **and** non-linear relationships
+* IV scores allow you to directly compare continuous and categorical variables 
+* IV can handle missing data without imputation and assess the predictive power of NAs
+
+It is good practice to split the preprocessing dataset prior to estimating IV. This allows you to adjust the IV estimates using cross-validation, so that variables that have high IV by chance do not get past the filter. See the {Information} package [vignette](https://cran.r-project.org/web/packages/Information/vignettes/Information-vignette.html) for more details.
 
 ```{r information value}
 set.seed(666)
 
-iv_split <- initial_split(df_fse, 0.5, strata = "purchase")
+# split preprocessin data
+iv_split <- initial_split(df_pre, 0.5, strata = "purchase")
 df_iv_train <- training(iv_split)
 df_iv_test <- testing(iv_split)
 
+# calculate IV
 iv <- create_infotables(
   data = df_iv_train,
   valid = df_iv_test,
@@ -122,7 +133,7 @@ iv <- create_infotables(
 )
 ```
 
-Notice that the `uniqe_id` variable was ignored because it has too many levels. This is a handy feature of the {Information} package when dealing with large datasets. It automatically ignores "junk" variables, like customer IDs and zip codes. Anything that's non-numeric with more than 1,000 levels does not get included in the IV estimation process.
+Notice that the `unique_id` variable was ignored because it has too many levels. This is a handy feature of the {Information} package when dealing with large datasets. It automatically ignores "junk" variables, like customer IDs and zip codes. Anything that's non-numeric with more than 1,000 levels does not get included in the IV estimation process.
 
 The `create_infotables()` function will create a data frame (accessible via `$Summary`) with IV estimates for each predictor, along with a cross-validation penalty and the adjusted IV score.
 
@@ -136,13 +147,15 @@ Once you have the IV estimates, you will need to pick a threshold for excluding 
 | 0.3 to 0.5  |  strong |
 |  >0.5 |  suspicious |
 
-**You don't want to be too restrictive at this stage**, especially if you are using a modeling approach that has a built-in feature selection process, as is the case with tree-based methods. Typically, I would just drop all variables with IV <0.02 because they're probably not going to add anything but noise. However, if most of the variables have relatively low IV scores, I would take the `top_n()` and hope for the best.
+**You don't want to be too restrictive at this stage**, especially if you are using a modeling approach that has a built-in feature selection process, as is the case with tree-based algorithms Typically, I would just drop all variables with IV <0.02 because they're probably not going to add anything but noise. However, if most of the variables have relatively low IV scores, I would just take the `top_n()` and hope for the best.
 
 ```{r top predictors}
+# get top predictors
 top_iv <- iv$Summary  %>% 
-  filter(AdjIV > 0.02) # alternatively, use top_n() 
+  filter(AdjIV > 0.02) 
 
-top_nm <- as.character(top_iv$Variable) # save names for filtering
+# save predictor names for filtering
+top_nm <- as.character(top_iv$Variable)
 
 top_iv
 ```
@@ -170,7 +183,7 @@ These transformations should be reproducible in SQL using case-when statements.
 Use the `designTreatmentsC()` function to create a variable treatment plan for classification models. There are a lot of options for this function, so check the documentation.
 
 ```{r create treatment plan}
-df_vtreat <- df_fse %>% 
+df_vtreat <- df_pre %>% 
   select(all_of(top_nm), purchase) 
 
 vtreat_plan <- designTreatmentsC(
