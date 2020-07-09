@@ -1,3 +1,8 @@
+---
+layout: post 
+title: A Feature Preprocessing Workflow
+---
+
 How I deal with wide datasets when building a predictive model
 
 Introduction
@@ -366,9 +371,9 @@ remove redundant variables prior to model fitting. This is one of the
 many distinctions between [predictive and explanatory
 modeling](https://www.stat.berkeley.edu/~aldous/157/Papers/shmueli.pdf).
 
-However, when using tree-based algorithms, it is necessary to remove
-redundant predictors in order to get accurate variable importance
-rankings, which helps with interpretability. To find the most redudant
+However, when using tree-based algorithms, it is helpful to remove
+redundant predictors in order to get more accurate variable importance
+rankings. To find the most redudant
 features in a dataset, I use the
 [findCorrelation()](https://topepo.github.io/caret/pre-processing.html#identifying-correlated-predictors)
 function from the [{Caret}](https://topepo.github.io/caret/) package.
@@ -447,14 +452,14 @@ str(df_train3)
     ##  $ d_region_lev_x_d               : num  0 1 0 0 0 0 0 0 1 0 ...
     ##  $ purchase                       : num  0 0 0 0 0 0 0 0 0 0 ...
 
-After filtering by IV, prepping with {vtreat}, and removing 3 redundant
+After filtering by IV, treating with {vtreat}, and removing 3 redundant
 variables, the final dataset has 43 predictors that are all numeric and
 ready for model training.
 
 Conclusion
 ----------
 
-The preprocessing workflow I described here works well for the sorts of
+The preprocessing workflow described here works well for the sorts of
 modeling projects I work on because it’s basically an excercie in [data
 mining](https://en.wikipedia.org/wiki/Data_mining). But if you have a
 relatively small set of well-understood predictors, the methods for
