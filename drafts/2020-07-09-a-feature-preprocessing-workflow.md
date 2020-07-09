@@ -1,3 +1,8 @@
+---
+layout: post 
+title: A Feature Preprocessing Workflow
+---
+
 How I deal with wide datasets when building a predictive model
 
 Introduction
