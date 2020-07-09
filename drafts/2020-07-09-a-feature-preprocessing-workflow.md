@@ -1,8 +1,3 @@
----
-layout: post 
-title: A Feature Preprocessing Workflow
----
-
 How I deal with wide datasets when building a predictive model
 
 Introduction
@@ -14,9 +9,15 @@ predictive model quickly.
 
 The workflow has three stages:
 
--   Univariate feature selection using the {Information} package
--   Feature engineering using the {vtreat} package
--   Removal of redundant features using the {caret} package
+-   Univariate feature selection using the
+    [{Information}](https://cran.rstudio.com/web/packages/Information/)
+    package
+-   Feature engineering using the
+    [{vtreat}](https://cran.r-project.org/web/packages/vtreat/index.html)
+    package
+-   Removal of redundant features using the
+    [{caret}](https://cran.r-project.org/web/packages/caret/index.html)
+    package
 
 The overall goal of the approach described here is to provide a
 reasonable number of highly relevent and non-redundant inputs to
@@ -298,13 +299,13 @@ vtreat_plan <- designTreatmentsC(
 )
 ```
 
-    ## [1] "vtreat 1.6.0 inspecting inputs Thu Jul  9 16:21:55 2020"
-    ## [1] "designing treatments Thu Jul  9 16:21:55 2020"
-    ## [1] " have initial level statistics Thu Jul  9 16:21:55 2020"
-    ## [1] " scoring treatments Thu Jul  9 16:21:55 2020"
-    ## [1] "have treatment plan Thu Jul  9 16:21:56 2020"
-    ## [1] "rescoring complex variables Thu Jul  9 16:21:56 2020"
-    ## [1] "done rescoring complex variables Thu Jul  9 16:21:56 2020"
+    ## [1] "vtreat 1.6.0 inspecting inputs Thu Jul  9 16:31:02 2020"
+    ## [1] "designing treatments Thu Jul  9 16:31:02 2020"
+    ## [1] " have initial level statistics Thu Jul  9 16:31:02 2020"
+    ## [1] " scoring treatments Thu Jul  9 16:31:02 2020"
+    ## [1] "have treatment plan Thu Jul  9 16:31:02 2020"
+    ## [1] "rescoring complex variables Thu Jul  9 16:31:02 2020"
+    ## [1] "done rescoring complex variables Thu Jul  9 16:31:03 2020"
 
 ### Prepare training data
 

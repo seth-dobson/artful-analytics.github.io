@@ -15,9 +15,9 @@ In this post, I will describe a preprocessing workflow that I use whenever I hav
 
 The workflow has three stages:
 
-* Univariate feature selection using the {Information} package
-* Feature engineering using the {vtreat} package
-* Removal of redundant features using the {caret} package
+* Univariate feature selection using the [{Information}](https://cran.rstudio.com/web/packages/Information/) package
+* Feature engineering using the [{vtreat}](https://cran.r-project.org/web/packages/vtreat/index.html) package
+* Removal of redundant features using the [{caret}](https://cran.r-project.org/web/packages/caret/index.html) package
 
 The overall goal of the approach described here is to provide a reasonable number of highly relevent and non-redundant inputs to tree-based classification algorithms, such as random forests or gradient boosting machines.
 
