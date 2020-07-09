@@ -88,7 +88,7 @@ rm(list = c("df1", "df2"))
 Data partitioning
 -----------------
 
-**Never use the same data for feature preprocessing and model training
+**Avoid using the same data for feature preprocessing and model training
 as this could result in nested model bias.** Instead, do a three-way
 split. For example, I will use 60% of the example data for model
 training, 20% for feature preprocessing, and 20% for testing. See [this
