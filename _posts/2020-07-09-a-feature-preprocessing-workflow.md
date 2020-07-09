@@ -88,8 +88,8 @@ rm(list = c("df1", "df2"))
 Data partitioning
 -----------------
 
-**Avoid using the same data for feature preprocessing and model training
-as this could result in nested model bias.** Instead, do a three-way
+Avoid using the same data for feature preprocessing and model training
+as this could result in nested model bias. Instead, do a three-way
 split. For example, I will use 60% of the example data for model
 training, 20% for feature preprocessing, and 20% for testing. See [this
 article](https://win-vector.com/2016/04/26/on-nested-models/) for more
@@ -137,7 +137,7 @@ building a model.
 
 There are several advantages of IV over other filtering methods.
 
--   IV can detect linear **and** non-linear relationships
+-   IV can detect linear and non-linear relationships
 -   IV scores allow you to directly compare continuous and categorical
     variables
 -   IV can handle missing data without imputation and assess the
@@ -188,7 +188,7 @@ general, the rule of thumb is:
 | 0.3 to 0.5  | strong           |
 | &gt;0.5     | suspicious       |
 
-**You don’t want to be too restrictive at this stage**, especially if
+You don’t want to be too restrictive at this stage, especially if
 you are using a modeling approach that has a built-in feature selection
 process, as is the case with tree-based algorithms. Typically, I would
 drop all variables with adjusted IV &lt;0.02. However, if most of the
