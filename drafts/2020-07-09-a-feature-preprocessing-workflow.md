@@ -312,7 +312,7 @@ vtreat_plan <- designTreatmentsC(
 After you have the treatment plan object, you can apply it to a new
 dataset using `prepare()`. This creates a new data frame with treated
 variables based on the `codeRestriction` argument. Read
-[this](https://cran.r-project.org/web/packages/vtreat/vignettes/vtreatVariableTypes.html)
+[this vignette](https://cran.r-project.org/web/packages/vtreat/vignettes/vtreatVariableTypes.html)
 for a description of the different {vtreat} variable types.
 
 ``` r
