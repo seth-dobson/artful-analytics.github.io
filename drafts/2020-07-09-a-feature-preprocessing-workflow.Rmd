@@ -1,21 +1,11 @@
 ---
 title: "A Feature Preprocessing Workflow"
 author: "Seth Dobson"
-date: "6/30/2020"
+date: "7/9/2020"
 output: 
   md_document: 
     variant: markdown_github
-editor_options: 
-  chunk_output_type: inline
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-	echo = TRUE,
-	message = FALSE,
-	warning = FALSE
-)
-```
 
 How I deal with wide datasets when building a predictive model
 
@@ -33,7 +23,7 @@ The overall goal of the approach described here is to provide a reasonable numbe
 
 To show how it works, let's start by loading the necessary packages, and then get some example data.
 
-```{r load packages}
+```{r load packages, message=FALSE}
 # load packages
 library(dplyr)
 library(Information)
@@ -119,7 +109,7 @@ There are several advantages of IV over other filtering methods.
 
 It is good practice to split the preprocessing dataset prior to estimating IV. This allows you to adjust the IV estimates using cross-validation to prevent weak predictors from getting past the filter by chance. See the {Information} package [vignette](https://cran.r-project.org/web/packages/Information/vignettes/Information-vignette.html) for more details.
 
-```{r information value}
+```{r information value, eval=FALSE}
 set.seed(666)
 
 # split preprocessin data
@@ -135,7 +125,7 @@ iv <- create_infotables(
 )
 ```
 
-Notice that the `unique_id` variable was ignored because it has too many levels. This is a handy feature of the {Information} package when dealing with large datasets. It automatically ignores "junk" variables, like customer IDs and zip codes. Any feature that's non-numeric with more than 1,000 levels gets excluded.
+Note that the `unique_id` variable was ignored because it has too many levels. This is a handy feature of the {Information} package when dealing with large datasets. It automatically ignores "junk" variables, like customer IDs and zip codes. Any feature that's non-numeric with more than 1,000 levels gets excluded.
 
 The `create_infotables()` function will create a data frame (accessible via `iv$Summary`) with an IV estimate for each predictor, along with a cross-validation penalty, and the adjusted IV score.
 
@@ -150,6 +140,11 @@ Once you have the IV estimates, you will need to pick a threshold for excluding 
 |  >0.5 |  suspicious |
 
 **You don't want to be too restrictive at this stage**, especially if you are using a modeling approach that has a built-in feature selection process, as is the case with tree-based algorithms. Typically, I would drop all variables with adjusted IV <0.02. However, if most of the variables have relatively low IV scores, I would take the `top_n()` and hope for the best.
+
+```{r include=FALSE}
+iv <- readRDS("/cloud/project/drafts/iv.RDS")
+```
+
 
 ```{r top predictors}
 # get top predictors
