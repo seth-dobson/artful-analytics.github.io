@@ -132,7 +132,7 @@ building a model.
 
 There are several advantages of IV over other filtering methods.
 
--   IV detect linear **and** non-linear relationships
+-   IV can detect linear **and** non-linear relationships
 -   IV scores allow you to directly compare continuous and categorical
     variables
 -   IV can handle missing data without imputation and assess the
