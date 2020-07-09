@@ -316,7 +316,7 @@ variables based on the `codeRestriction` argument. Read
 for a description of the different {vtreat} variable types.
 
 ``` r
-# created treated data frame
+# create treated data frame
 df_train2 <- prepare(
   treatmentplan = vtreat_plan,
   dframe = df_train,
