@@ -1,16 +1,25 @@
 
-.highlight {
-  background-color: #efefef;
+.highlight { 
+  background-color: $darkerGray;
   padding: 5px 10px;
   margin: 20px 0;
-  overflow: scroll;
 }
 
+.highlight pre {
+  overflow: scroll; // Prefer no word wrap? Uncomment this line and comment out the 2 lines below.
+  // word-break: break-all;
+  // word-wrap: break-word;
+}
+ 
 code {
-  font-family:'Bitstream Vera Sans Mono','Courier', monospace;
+  font-family: 'Courier', monospace;
+  font-size: 14px;
+  color: #999
 }
-
-.highlight .c { color: #586E75 } /* Comment */
+ 
+// Solarized Light Pygments 
+// Thanks https://gist.github.com/edwardhotchkiss/2005058
+.highlight .c, .highlight .c1 { color: #586E75 } /* Comment */
 .highlight .err { color: #93A1A1 } /* Error */
 .highlight .g { color: #93A1A1 } /* Generic */
 .highlight .k { color: #859900 } /* Keyword */
