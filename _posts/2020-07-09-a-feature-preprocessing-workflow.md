@@ -153,7 +153,7 @@ for more details.
 ``` r
 set.seed(666)
 
-# split preprocessin data
+# split preprocessing data
 iv_split <- initial_split(df_pre, 0.5, strata = "purchase")
 df_iv_train <- training(iv_split)
 df_iv_test <- testing(iv_split)
