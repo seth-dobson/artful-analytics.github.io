@@ -9,7 +9,7 @@ Introduction
 ------------
 
 In this post, I will describe a preprocessing workflow that I use
-whenever I have a lot variables (wide data) and need to build a
+whenever I have a lot of variables (wide data) and need to build a
 predictive model quickly.
 
 The workflow has three stages:
