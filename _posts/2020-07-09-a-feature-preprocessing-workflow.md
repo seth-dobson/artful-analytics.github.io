@@ -180,13 +180,7 @@ Once you have the IV estimates, you will need to pick a threshold for
 excluding variables based on adjusted IV. This is subjective. But in
 general, the rule of thumb is:
 
-| **IV**      | **Predictive Power** |
-|-------------|------------------|
-| &lt;0.02    | useless          |
-| 0.02 to 0.1 | weak             |
-| 0.1 to 0.3  | medium           |
-| 0.3 to 0.5  | strong           |
-| &gt;0.5     | suspicious       |
+![](/images/iv-rot-table.png)
 
 You don’t want to be too restrictive at this stage, especially if
 you are using a modeling approach that has a built-in feature selection
