@@ -180,7 +180,7 @@ Once you have the IV estimates, you will need to pick a threshold for
 excluding variables based on adjusted IV. This is subjective. But in
 general, the rule of thumb is:
 
-| IV          | Predictive Power |
+| **IV**      | **Predictive Power** |
 |-------------|------------------|
 | &lt;0.02    | useless          |
 | 0.02 to 0.1 | weak             |
