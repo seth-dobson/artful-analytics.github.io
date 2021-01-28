@@ -6,7 +6,7 @@ permalink: /about/
 
 My name is Seth Dobson, and this is my personal website, where I blog mostly about the statistical programming language [R](https://www.r-project.org/about.html), but also about marketing and data science in general. All views expressed here are my own.
 
-I am currently a Data Scientist at [Hill's Pet Nutrition](https://www.hillspet.com/), a subsidiary of [Colgate-Palmolive](https://www.colgatepalmolive.com/en-us). At Hill's, I am helping to build a data-driven approach to marketing using advanced analytics. Our focus is on increasing ditigal engagement and retention among veterinary clinics and pet parents.
+I am currently a Data Scientist at [Hill's Pet Nutrition](https://www.hillspet.com/), a subsidiary of [Colgate-Palmolive](https://www.colgatepalmolive.com/en-us). At Hill's, I am helping to build a data-driven approach to marketing using advanced analytics.
 
 My career path to marketing analytics has been unconventional to say the least.
 
