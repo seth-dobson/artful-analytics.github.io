@@ -4,9 +4,9 @@ title: About me
 permalink: /about/
 ---
 
-My name is Seth Dobson, and this is my personal website, where I blog mostly about the statistical programming language [R](https://www.r-project.org/about.html), but also about marketing and data science in general. 
+My name is Seth Dobson, and this is my personal website, where I blog mostly about the statistical programming language [R](https://www.r-project.org/about.html), but also about marketing and data science in general. All views expressed here are my own.
 
-I am currently an Analytics Manager at [Merkle](https://www.merkleinc.com/), a leading data-driven marketing agency owned by the [Dentsu Aegis Network](https://www.dentsuaegisnetwork.com/). I work with clients to help transform data into actionable insights. All the views expressed here are my own.
+I am currently a Data Scientist at [Hill's Pet Nutrition](https://www.hillspet.com/), a subsidiary of [Colgate-Palmolive](https://www.colgatepalmolive.com/en-us). At Hill's, I am helping to build a data-driven approach to marketing using advanced analytics. Our focus is on increasing ditigal engagement and retention among veterinary clinics and pet parents.
 
 My career path to marketing analytics has been unconventional to say the least.
 
@@ -21,10 +21,12 @@ In 2007, I landed a tenure track position at Dartmouth College, where I taught u
 
 After leaving academia in 2014,  I began searching for jobs as a data analyst. My first job outside of academia was at [Discover Financial Services](https://www.discover.com/). I worked there for 4 years and learned a lot about business intelligence and predictive analytics. Along the way, I taught myself R by blogging about Scottish [football analytics](http://fitbafancystats.blogspot.com/) as a hobby.
 
-I joined Merkle in November, 2018. My job involves using R everyday, which I love. I work remotely from my home in Peoria, AZ, much to the delight of my two cats (Fig. 2).
+I joined [Merkle](https://www.merkleinc.com/), a performance marketing agency owned by the [Dentsu Aegis Network](https://www.dentsuaegisnetwork.com/), in November, 2018. From there, my career in marketing analytics really took off :rocket:
+
+My job involves using R everyday, which I love. I work remotely from my home in Peoria, AZ, much to the delight of my cats (Fig. 2).
 
 
 ![](/images/kiefer-with-r-books.jpg)
-<br>*Fig. 2 Kiefer the R cat*
+<br>*Fig. 2 Kiefer the R cat, RIP*
 
 **For more R content, please visit [R-bloggers](https://www.r-bloggers.com/) and [RWeekly.org](https://rweekly.org/).**
