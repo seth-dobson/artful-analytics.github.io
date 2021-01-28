@@ -21,7 +21,7 @@ In 2007, I landed a tenure track position at Dartmouth College, where I taught u
 
 After leaving academia in 2014,  I began searching for jobs as a data analyst. My first job outside of academia was at [Discover Financial Services](https://www.discover.com/). I worked there for 4 years and learned a lot about business intelligence and predictive analytics. Along the way, I taught myself R by blogging about Scottish [football analytics](http://fitbafancystats.blogspot.com/) as a hobby.
 
-I joined [Merkle](https://www.merkleinc.com/), a performance marketing agency owned by the [Dentsu Aegis Network](https://www.dentsuaegisnetwork.com/), in November, 2018. From there, my career in marketing analytics really took off :rocket:
+I joined [Merkle](https://www.merkleinc.com/), a performance marketing agency owned by the [Dentsu Aegis Network](https://www.dentsuaegisnetwork.com/), in November, 2018. From there, my career in marketing analytics really took off 🚀
 
 My job involves using R everyday, which I love. I work remotely from my home in Peoria, AZ, much to the delight of my cats (Fig. 2).
 
