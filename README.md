@@ -1,1 +1,1 @@
-This is my personal blog, [Artful Analytics](https://seth-dobson.github.io/). It uses the [Jekyll Now](https://github.com/barryclark/jekyll-now) theme by Barry Clark, who has written an excellent [tutorial](https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/).
+This is my personal blog, [Artful Analytics](https://seth-dobson.github.io/). It is based on the [Jekyll Now](https://github.com/barryclark/jekyll-now) theme by Barry Clark, who has written an excellent [tutorial](https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/).
